@@ -1,5 +1,10 @@
 {
   "name": "Teiaş Süper Lig",
-  "teams": [],
+  "teams": [
+    {
+      "id": "2jn3hnb8",
+      "name": "Besiktas"
+    }
+  ],
   "matches": []
 }
