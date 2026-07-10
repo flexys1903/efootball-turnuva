@@ -1,5 +1,23 @@
 {
   "name": "Teiaş Süper Lig",
-  "teams": [],
-  "matches": []
+  "teams": [
+    {
+      "id": "e5m5d0uv",
+      "name": "u1ikss"
+    },
+    {
+      "id": "v5zq6z7a",
+      "name": "anal"
+    }
+  ],
+  "matches": [
+    {
+      "id": "t3ewt5tq",
+      "homeId": "e5m5d0uv",
+      "awayId": "v5zq6z7a",
+      "homeScore": 3,
+      "awayScore": 1,
+      "ts": 1783722269994
+    }
+  ]
 }
