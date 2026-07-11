@@ -1,5 +1,11 @@
 {
   "name": "Teiaş Süper Lig",
-  "teams": [],
+  "teams": [
+    {
+      "id": "5oapzffh",
+      "name": "Nightmare Panthers",
+      "logo": "https://raw.githubusercontent.com/flexys1903/efootball-turnuva/main/logos/5oapzffh.jpg?v=1783768126284"
+    }
+  ],
   "matches": []
 }
