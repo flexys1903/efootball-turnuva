@@ -403,7 +403,7 @@ function renderAdminPanels(){
         <div>
           <label>Yeni Takım Adı</label>
           <input id="newTeamInput" type="text" placeholder="Örn. Galatasaray">
-          <label>Logo Dosyası Yükle (opsiyonel, max 1MB)</label>
+          <label>Logo Dosyası Yükle (opsiyonel, max 4MB)</label>
           <input id="newTeamLogoFile" type="file" accept="image/*">
           <label style="margin-top:-6px;">veya Logo Linki</label>
           <input id="newTeamLogo" type="text" placeholder="https://... (dosya seçtiysen bu alanı boş bırak)" onkeydown="if(event.key==='Enter')addTeam()">
@@ -568,7 +568,7 @@ async function addTeam(){
   const file = fileInput.files[0];
 
   if(file){
-    if(file.size > 1024*1024){ alert("Logo dosyası 1MB'dan küçük olmalı."); return; }
+    if(file.size > 4*1024*1024){ alert("Logo dosyası 4MB'dan küçük olmalı."); return; }
     banner = {type:'saving', text:'Logo yükleniyor…'};
     render();
     try{
