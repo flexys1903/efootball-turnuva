@@ -98,13 +98,21 @@ tbody tr.leader td.left{color:var(--cyan);}
 
 label{display:block;font-size:11.5px;letter-spacing:0.6px;text-transform:uppercase;color:var(--text-faint);margin-bottom:6px;font-weight:700;}
 input,select{width:100%;background:var(--bg-elevated);border:1px solid var(--line);color:var(--text);padding:10px 12px;border-radius:8px;font-size:14px;font-family:'Manrope',sans-serif;margin-bottom:14px;}
+input[type="file"]{padding:8px 10px;font-size:12.5px;color:var(--text-muted);}
+input[type="file"]::file-selector-button{background:var(--bg-elevated-2);color:var(--cyan);border:1px solid var(--line);border-radius:6px;padding:6px 10px;font-size:12px;font-weight:700;margin-right:10px;cursor:pointer;}
 input:focus,select:focus{border-color:var(--cyan-dim);outline:none;}
 .score-row{display:grid;grid-template-columns:1fr 70px 20px 70px 1fr;gap:8px;align-items:start;}
 .score-row select{margin-bottom:0;}
 .score-row input{margin-bottom:0;text-align:center;}
 .vs-label{text-align:center;color:var(--text-faint);font-family:'Rajdhani',sans-serif;font-weight:700;padding-top:10px;}
 
+.team-badge{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;}
+.team-badge-img{border-radius:6px;object-fit:cover;background:var(--bg-elevated);flex-shrink:0;}
+.team-badge-fallback{align-items:center;justify-content:center;border-radius:6px;background:var(--bg-elevated);color:var(--cyan);font-family:'Rajdhani',sans-serif;font-weight:700;flex-shrink:0;}
+.team-cell{display:flex;align-items:center;gap:9px;}
+
 .team-chip{display:flex;justify-content:space-between;align-items:center;background:var(--bg-elevated);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin-bottom:8px;font-size:14px;font-weight:600;}
+.team-chip .team-cell{gap:10px;}
 
 .match-item{display:flex;justify-content:space-between;align-items:center;padding:10px 4px;border-bottom:1px solid rgba(29,67,81,0.5);font-size:14px;}
 .match-item .teams{font-weight:600;}
@@ -145,6 +153,21 @@ let banner = null;       // {type:'saving'|'error', text}
 
 function uid(){ return Math.random().toString(36).slice(2,10); }
 function esc(s){ const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+function initials(name){
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  if(parts.length === 0) return '?';
+  if(parts.length === 1) return parts[0].slice(0,2).toUpperCase();
+  return (parts[0][0] + parts[1][0]).toUpperCase();
+}
+
+function teamBadge(team, size){
+  const fallback = `<span class="team-badge-fallback" style="display:${team.logo?'none':'flex'};width:${size}px;height:${size}px;font-size:${Math.round(size*0.4)}px;">${esc(initials(team.name))}</span>`;
+  const img = team.logo
+    ? `<img class="team-badge-img" src="${esc(team.logo)}" alt="" style="width:${size}px;height:${size}px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">`
+    : '';
+  return `<span class="team-badge">${img}${fallback}</span>`;
+}
 
 function b64EncodeUnicode(str){
   return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (m,p1)=>String.fromCharCode('0x'+p1)));
@@ -240,7 +263,7 @@ async function saveData(){
 /* ---------- puan durumu hesaplama ---------- */
 function computeStandings(){
   const table = {};
-  state.teams.forEach(t=>{ table[t.id] = {id:t.id,name:t.name,O:0,G:0,B:0,M:0,AG:0,YG:0,formList:[]}; });
+  state.teams.forEach(t=>{ table[t.id] = {id:t.id,name:t.name,logo:t.logo||'',O:0,G:0,B:0,M:0,AG:0,YG:0,formList:[]}; });
   const sorted = [...state.matches].sort((a,b)=>a.ts-b.ts);
   sorted.forEach(m=>{
     const h = table[m.homeId], a = table[m.awayId];
@@ -349,7 +372,7 @@ function renderTable(standings){
     return `
       <tr class="${rank===1 ? 'leader' : ''}">
         <td><span class="rank ${rank<=2?'top':''}">${rank}</span></td>
-        <td class="left">${esc(r.name)}${rank===1 && r.O>0 ? '<span class="crown">♛</span>' : ''}</td>
+        <td class="left"><div class="team-cell">${teamBadge(r,22)}<span>${esc(r.name)}</span>${rank===1 && r.O>0 ? '<span class="crown">♛</span>' : ''}</div></td>
         <td>${r.O}</td><td>${r.G}</td><td>${r.B}</td><td>${r.M}</td>
         <td>${r.AG}</td><td>${r.YG}</td>
         <td class="${avClass}">${avText}</td>
@@ -370,7 +393,7 @@ function renderTable(standings){
 function renderAdminPanels(){
   const teamOptions = state.teams.map(t=>`<option value="${t.id}">${esc(t.name)}</option>`).join('');
   const teamChips = state.teams.length
-    ? state.teams.map(t=>`<div class="team-chip"><span>${esc(t.name)}</span><button class="btn-icon" onclick="removeTeam('${t.id}')" title="Takımı sil">✕</button></div>`).join('')
+    ? state.teams.map(t=>`<div class="team-chip"><div class="team-cell">${teamBadge(t,26)}<span>${esc(t.name)}</span></div><button class="btn-icon" onclick="removeTeam('${t.id}')" title="Takımı sil">✕</button></div>`).join('')
     : '<div class="empty-note">Henüz takım yok.</div>';
 
   return `
@@ -379,11 +402,13 @@ function renderAdminPanels(){
       <div class="admin-grid">
         <div>
           <label>Yeni Takım Adı</label>
-          <div style="display:flex;gap:8px;">
-            <input id="newTeamInput" type="text" placeholder="Örn. Galatasaray" onkeydown="if(event.key==='Enter')addTeam()">
-            <button class="btn btn-cyan btn-small" style="height:40px;white-space:nowrap;" onclick="addTeam()">Ekle</button>
-          </div>
-          <div style="margin-top:6px;">${teamChips}</div>
+          <input id="newTeamInput" type="text" placeholder="Örn. Galatasaray">
+          <label>Logo Dosyası Yükle (opsiyonel, max 1MB)</label>
+          <input id="newTeamLogoFile" type="file" accept="image/*">
+          <label style="margin-top:-6px;">veya Logo Linki</label>
+          <input id="newTeamLogo" type="text" placeholder="https://... (dosya seçtiysen bu alanı boş bırak)" onkeydown="if(event.key==='Enter')addTeam()">
+          <button class="btn btn-cyan" style="width:100%;" onclick="addTeam()">Takımı Ekle</button>
+          <div style="margin-top:12px;">${teamChips}</div>
         </div>
         <div>
           <label>Maç Sonucu Gir</label>
@@ -483,14 +508,80 @@ async function submitLogin(){
 }
 function logoutAdmin(){ adminToken = null; render(); }
 
+function fileToBase64(file){
+  return new Promise((resolve, reject)=>{
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = () => reject(new Error('Dosya okunamadı'));
+    reader.readAsDataURL(file);
+  });
+}
+
+async function uploadTeamLogo(file, teamId){
+  const rawExt = (file.name.split('.').pop() || 'png').toLowerCase().replace(/[^a-z0-9]/g,'');
+  const ext = rawExt || 'png';
+  const path = `logos/${teamId}.${ext}`;
+  const base64 = await fileToBase64(file);
+  const apiUrl = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${path}`;
+  const body = { message: 'Takım logosu yüklendi', content: base64, branch: BRANCH };
+
+  let res = await fetch(apiUrl, {
+    method:'PUT',
+    headers:{ Authorization:`Bearer ${adminToken}`, Accept:'application/vnd.github+json', 'Content-Type':'application/json' },
+    body: JSON.stringify(body)
+  });
+
+  if(res.status === 422 || res.status === 409){
+    const shaRes = await fetch(`${apiUrl}?ref=${BRANCH}&_=${Date.now()}`, {
+      cache:'no-store',
+      headers:{ Authorization:`Bearer ${adminToken}`, Accept:'application/vnd.github+json' }
+    });
+    if(shaRes.ok){
+      const j = await shaRes.json();
+      body.sha = j.sha;
+      res = await fetch(apiUrl, {
+        method:'PUT',
+        headers:{ Authorization:`Bearer ${adminToken}`, Accept:'application/vnd.github+json', 'Content-Type':'application/json' },
+        body: JSON.stringify(body)
+      });
+    }
+  }
+
+  if(!res.ok){
+    const errJson = await res.json().catch(()=>({}));
+    throw new Error(errJson.message || ('Logo yükleme hatası ' + res.status));
+  }
+  return `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/${path}?v=${Date.now()}`;
+}
+
 /* ---------- takım & maç işlemleri ---------- */
 async function addTeam(){
   const input = document.getElementById('newTeamInput');
+  const logoInput = document.getElementById('newTeamLogo');
+  const fileInput = document.getElementById('newTeamLogoFile');
   const name = input.value.trim();
   if(!name) return;
   if(state.teams.some(t=>t.name.toLowerCase()===name.toLowerCase())){ alert('Bu isimde bir takım zaten var.'); return; }
+
+  const id = uid();
+  let logo = logoInput.value.trim();
+  const file = fileInput.files[0];
+
+  if(file){
+    if(file.size > 1024*1024){ alert("Logo dosyası 1MB'dan küçük olmalı."); return; }
+    banner = {type:'saving', text:'Logo yükleniyor…'};
+    render();
+    try{
+      logo = await uploadTeamLogo(file, id);
+    }catch(e){
+      banner = {type:'error', text:'Logo yüklenemedi: ' + e.message};
+      render();
+      return;
+    }
+  }
+
   const prev = JSON.parse(JSON.stringify(state));
-  state.teams.push({id:uid(), name});
+  state.teams.push({id, name, logo});
   const ok = await saveData();
   if(!ok) state = prev;
   render();
