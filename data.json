@@ -1,5 +1,10 @@
 {
   "name": "Teiaş Süper Lig",
-  "teams": [],
+  "teams": [
+    {
+      "id": "dfmsni13",
+      "name": "Çalhan FC"
+    }
+  ],
   "matches": []
 }
