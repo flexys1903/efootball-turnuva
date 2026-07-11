@@ -76,7 +76,7 @@ button{font-family:'Manrope',sans-serif;cursor:pointer;border:none;outline:none;
 table{width:100%;border-collapse:collapse;font-size:13.5px;}
 thead th{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--text-faint);text-align:center;padding:8px 6px;border-bottom:1px solid var(--line);}
 thead th.left{text-align:left;}
-tbody td{padding:11px 6px;text-align:center;border-bottom:1px solid rgba(29,67,81,0.5);font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text);}
+tbody td{padding:8px 6px;text-align:center;border-bottom:1px solid rgba(29,67,81,0.5);font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text);}
 tbody td.left{text-align:left;font-family:'Manrope',sans-serif;font-weight:700;font-size:14px;}
 tbody tr:hover{background:rgba(45,227,255,0.04);}
 tbody tr.leader td.left{color:var(--cyan);}
@@ -107,9 +107,9 @@ input:focus,select:focus{border-color:var(--cyan-dim);outline:none;}
 .vs-label{text-align:center;color:var(--text-faint);font-family:'Rajdhani',sans-serif;font-weight:700;padding-top:10px;}
 
 .team-badge{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;}
-.team-badge-img{border-radius:6px;object-fit:cover;background:var(--bg-elevated);flex-shrink:0;}
-.team-badge-fallback{align-items:center;justify-content:center;border-radius:6px;background:var(--bg-elevated);color:var(--cyan);font-family:'Rajdhani',sans-serif;font-weight:700;flex-shrink:0;}
-.team-cell{display:flex;align-items:center;gap:9px;}
+.team-badge-img{border-radius:8px;object-fit:cover;background:var(--bg-elevated);flex-shrink:0;}
+.team-badge-fallback{align-items:center;justify-content:center;border-radius:8px;background:var(--bg-elevated);color:var(--cyan);font-family:'Rajdhani',sans-serif;font-weight:700;flex-shrink:0;}
+.team-cell{display:flex;align-items:center;gap:10px;}
 
 .team-chip{display:flex;justify-content:space-between;align-items:center;background:var(--bg-elevated);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin-bottom:8px;font-size:14px;font-weight:600;}
 .team-chip .team-cell{gap:10px;}
@@ -372,7 +372,7 @@ function renderTable(standings){
     return `
       <tr class="${rank===1 ? 'leader' : ''}">
         <td><span class="rank ${rank<=2?'top':''}">${rank}</span></td>
-        <td class="left"><div class="team-cell">${teamBadge(r,22)}<span>${esc(r.name)}</span>${rank===1 && r.O>0 ? '<span class="crown">♛</span>' : ''}</div></td>
+        <td class="left"><div class="team-cell">${teamBadge(r,34)}<span>${esc(r.name)}</span>${rank===1 && r.O>0 ? '<span class="crown">♛</span>' : ''}</div></td>
         <td>${r.O}</td><td>${r.G}</td><td>${r.B}</td><td>${r.M}</td>
         <td>${r.AG}</td><td>${r.YG}</td>
         <td class="${avClass}">${avText}</td>
@@ -393,7 +393,7 @@ function renderTable(standings){
 function renderAdminPanels(){
   const teamOptions = state.teams.map(t=>`<option value="${t.id}">${esc(t.name)}</option>`).join('');
   const teamChips = state.teams.length
-    ? state.teams.map(t=>`<div class="team-chip"><div class="team-cell">${teamBadge(t,26)}<span>${esc(t.name)}</span></div><button class="btn-icon" onclick="removeTeam('${t.id}')" title="Takımı sil">✕</button></div>`).join('')
+    ? state.teams.map(t=>`<div class="team-chip"><div class="team-cell">${teamBadge(t,32)}<span>${esc(t.name)}</span></div><button class="btn-icon" onclick="removeTeam('${t.id}')" title="Takımı sil">✕</button></div>`).join('')
     : '<div class="empty-note">Henüz takım yok.</div>';
 
   return `
