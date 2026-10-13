@@ -27,5 +27,14 @@
       "logo": "https://raw.githubusercontent.com/flexys1903/efootball-turnuva/main/logos/usd6npg3.jpeg?v=1783980266922"
     }
   ],
-  "matches": []
+  "matches": [
+    {
+      "id": "x2a1asut",
+      "homeId": "5oapzffh",
+      "awayId": "mmvm63ti",
+      "homeScore": 3,
+      "awayScore": 2,
+      "ts": 1791906536241
+    }
+  ]
 }
