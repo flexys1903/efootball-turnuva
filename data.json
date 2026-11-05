@@ -1,11 +1,5 @@
 {
   "name": "Teiaş Süper Lig",
-  "teams": [
-    {
-      "id": "usd6npg3",
-      "name": "Alpletico Madrid",
-      "logo": "https://raw.githubusercontent.com/flexys1903/efootball-turnuva/main/logos/usd6npg3.jpeg?v=1783980266922"
-    }
-  ],
+  "teams": [],
   "matches": []
 }
