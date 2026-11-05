@@ -1,5 +1,26 @@
 {
   "name": "Teiaş Süper Lig",
-  "teams": [],
+  "teams": [
+    {
+      "id": "mmvm63ti",
+      "name": "Fazlı KİNG",
+      "logo": "https://raw.githubusercontent.com/flexys1903/efootball-turnuva/main/logos/mmvm63ti.jpg?v=1783783123554"
+    },
+    {
+      "id": "rdvclg98",
+      "name": "Çalhan FC",
+      "logo": "https://raw.githubusercontent.com/flexys1903/efootball-turnuva/main/logos/rdvclg98.png?v=1783877641289"
+    },
+    {
+      "id": "h7jpb77y",
+      "name": "Şeker KARDEŞLER",
+      "logo": "https://raw.githubusercontent.com/flexys1903/efootball-turnuva/main/logos/h7jpb77y.jpg?v=1783882238254"
+    },
+    {
+      "id": "usd6npg3",
+      "name": "Alpletico Madrid",
+      "logo": "https://raw.githubusercontent.com/flexys1903/efootball-turnuva/main/logos/usd6npg3.jpeg?v=1783980266922"
+    }
+  ],
   "matches": []
 }
