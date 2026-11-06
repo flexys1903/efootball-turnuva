@@ -22,19 +22,10 @@
       "logo": "https://raw.githubusercontent.com/flexys1903/efootball-turnuva/main/logos/7pxpy0xn.jpg?v=1793986079069"
     },
     {
-      "id": "j0v2wx5k",
-      "name": "Boğa FK",
-      "logo": "https://raw.githubusercontent.com/flexys1903/efootball-turnuva/main/logos/j0v2wx5k.jpg?v=1793986575424"
+      "id": "c4u72qwp",
+      "name": "BogaFK",
+      "logo": "https://raw.githubusercontent.com/flexys1903/efootball-turnuva/main/logos/c4u72qwp.jpg?v=1793986632129"
     }
   ],
-  "matches": [
-    {
-      "id": "mmt3ssoc",
-      "homeId": "j0v2wx5k",
-      "awayId": "s4zc899s",
-      "homeScore": 1,
-      "awayScore": 0,
-      "ts": 1793986599254
-    }
-  ]
+  "matches": []
 }
