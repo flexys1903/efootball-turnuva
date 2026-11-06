@@ -1,5 +1,11 @@
 {
   "name": "Teiaş Süper Lig",
-  "teams": [],
+  "teams": [
+    {
+      "id": "s4zc899s",
+      "name": "Palmerik FC",
+      "logo": "https://raw.githubusercontent.com/flexys1903/efootball-turnuva/main/logos/s4zc899s.jpg?v=1793984107730"
+    }
+  ],
   "matches": []
 }
