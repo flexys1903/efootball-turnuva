@@ -3,102 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PES Mobil Turnuvası</title>
+    <title>PES Mobil Süper Lig</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #1a1a1a; color: white; text-align: center; margin: 0; padding: 20px; }
-        .container { max-width: 800px; margin: auto; background: #262626; padding: 20px; border-radius: 15px; border-top: 5px solid #f2f2f2; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        h1 { color: #fff; text-transform: uppercase; letter-spacing: 2px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: #333; border-radius: 10px; overflow: hidden; }
-        th { background-color: #000; color: #fff; padding: 12px; }
-        td { padding: 12px; border-bottom: 1px solid #444; }
-        tr:nth-child(even) { background-color: #2c2c2c; }
-        .form-group { margin: 20px 0; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-        input, select, button { padding: 10px; border-radius: 5px; border: none; font-size: 16px; }
-        button { background: #f2f2f2; color: #000; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        button:hover { background: #ccc; }
-        .winner { color: #f1c40f; font-weight: bold; }
+        :root { --ana-renk: #000; --ikincil: #fff; --gri: #1a1a1a; }
+        body { font-family: 'Arial', sans-serif; background-color: var(--ana-renk); color: var(--ikincil); margin: 0; padding: 10px; }
+        .container { max-width: 600px; margin: auto; background: var(--gri); padding: 15px; border-radius: 10px; border: 1px solid #333; }
+        h2 { text-align: center; border-bottom: 2px solid #fff; padding-bottom: 10px; text-transform: uppercase; }
+        
+        /* Tablo Stili */
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px; }
+        th { background: #333; padding: 10px; border: 1px solid #444; }
+        td { padding: 10px; text-align: center; border: 1px solid #444; }
+        tr:nth-child(1) { background: #222; font-weight: bold; color: #f1c40f; } /* Lider rengi */
+
+        /* Giriş Paneli */
+        .admin-panel { background: #fff; color: #000; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+        .admin-panel input { width: 80px; padding: 5px; margin: 5px; }
+        button { background: #000; color: #fff; padding: 8px 15px; border: none; cursor: pointer; border-radius: 4px; font-weight: bold; }
+        
+        .footer { text-align: center; font-size: 12px; margin-top: 20px; color: #666; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>🦅 PES Süper Lig</h1>
-    
-    <div class="form-group">
-        <input type="text" id="p1" placeholder="Oyuncu 1">
-        <input type="number" id="s1" placeholder="Skor" style="width: 60px;">
-        <span>-</span>
-        <input type="number" id="s2" placeholder="Skor" style="width: 60px;">
-        <input type="text" id="p2" placeholder="Oyuncu 2">
-        <button onclick="macEkle()">Maçı Kaydet</button>
+    <h2>🦅 PES Süper Lig</h2>
+
+    <div class="admin-panel" id="admin">
+        <h4 style="margin:0 0 10px 0">Skor Gir</h4>
+        <input type="text" id="ev" placeholder="Ev Sahibi">
+        <input type="number" id="s1" placeholder="0">
+        -
+        <input type="number" id="s2" placeholder="0">
+        <input type="text" id="dep" placeholder="Deplasman">
+        <br>
+        <button onclick="macEkle()">Kaydet ve Güncelle</button>
     </div>
 
     <table id="puanTablosu">
         <thead>
             <tr>
                 <th>Sıra</th>
-                <th>Oyuncu</th>
+                <th>Takım</th>
                 <th>O</th>
                 <th>G</th>
                 <th>B</th>
                 <th>M</th>
-                <th>Puan</th>
+                <th>AV</th>
+                <th>P</th>
             </tr>
         </thead>
-        <tbody id="puanBody">
-            </tbody>
+        <tbody id="tbody"></tbody>
     </table>
 
-    <h3>Son Karşılaşmalar</h3>
-    <ul id="macListesi" style="list-style: none; padding: 0;"></ul>
+    <div class="footer">Veriler anlık olarak güncellenir.</div>
 </div>
 
 <script>
-    let oyuncular = {};
+    let veriler = {};
 
     function macEkle() {
-        const p1 = document.getElementById('p1').value.trim();
-        const p2 = document.getElementById('p2').value.trim();
+        const ev = document.getElementById('ev').value.trim();
+        const dep = document.getElementById('dep').value.trim();
         const s1 = parseInt(document.getElementById('s1').value);
         const s2 = parseInt(document.getElementById('s2').value);
 
-        if(!p1 || !p2 || isNaN(s1) || isNaN(s2)) return alert("Eksik bilgi!");
+        if(!ev || !dep || isNaN(s1) || isNaN(s2)) return;
 
-        [p1, p2].forEach(p => {
-            if(!oyuncular[p]) oyuncular[p] = {o:0, g:0, b:0, m:0, p:0};
+        [ev, dep].forEach(t => {
+            if(!veriler[t]) veriler[t] = {o:0, g:0, b:0, m:0, ag:0, yg:0, p:0};
         });
 
-        oyuncular[p1].o++;
-        oyuncular[p2].o++;
+        const t1 = veriler[ev], t2 = veriler[dep];
+        t1.o++; t2.o++;
+        t1.ag += s1; t1.yg += s2;
+        t2.ag += s2; t2.yg += s1;
 
-        if(s1 > s2) { oyuncular[p1].g++; oyuncular[p1].p += 3; oyuncular[p2].m++; }
-        else if(s2 > s1) { oyuncular[p2].g++; oyuncular[p2].p += 3; oyuncular[p1].m++; }
-        else { oyuncular[p1].b++; oyuncular[p2].b++; oyuncular[p1].p += 1; oyuncular[p2].p += 1; }
+        if(s1 > s2) { t1.g++; t1.p += 3; t2.m++; }
+        else if(s2 > s1) { t2.g++; t2.p += 3; t1.m++; }
+        else { t1.b++; t2.b++; t1.p += 1; t2.p += 1; }
 
-        tabloGuncelle();
-        document.getElementById('macListesi').innerHTML += `<li>${p1} ${s1} - ${s2} ${p2}</li>`;
+        tabloyuCiz();
+        // Verileri tarayıcıya kaydeder (Sayfa kapansa da gitmez)
+        localStorage.setItem('pesLigVeri', JSON.stringify(veriler));
     }
 
-    function tabloGuncelle() {
-        const body = document.getElementById('puanBody');
-        body.innerHTML = "";
+    function tabloyuCiz() {
+        const tbody = document.getElementById('tbody');
+        tbody.innerHTML = "";
         
-        let sirali = Object.keys(oyuncular).sort((a,b) => oyuncular[b].p - oyuncular[a].p);
+        let sirali = Object.keys(veriler).sort((a,b) => {
+            if(veriler[b].p !== veriler[a].p) return veriler[b].p - veriler[a].p;
+            return (veriler[b].ag - veriler[b].yg) - (veriler[a].ag - veriler[a].yg);
+        });
 
-        sirali.forEach((isim, index) => {
-            let o = oyuncular[isim];
-            body.innerHTML += `
-                <tr>
-                    <td>${index + 1}</td>
-                    <td>${isim}</td>
-                    <td>${o.o}</td>
-                    <td>${o.g}</td>
-                    <td>${o.b}</td>
-                    <td>${o.m}</td>
-                    <td><strong>${o.p}</strong></td>
-                </tr>`;
+        sirali.forEach((isim, i) => {
+            const t = veriler[isim];
+            tbody.innerHTML += `<tr>
+                <td>${i+1}</td>
+                <td style="text-align:left">${isim}</td>
+                <td>${t.o}</td>
+                <td>${t.g}</td>
+                <td>${t.b}</td>
+                <td>${t.m}</td>
+                <td>${t.ag - t.yg}</td>
+                <td>${t.p}</td>
+            </tr>`;
         });
     }
+
+    // Sayfa açıldığında eski verileri yükle
+    window.onload = () => {
+        const kayıtlı = localStorage.getItem('pesLigVeri');
+        if(kayıtlı) { veriler = JSON.parse(kayıtlı); tabloyuCiz(); }
+    };
 </script>
 
 </body>
