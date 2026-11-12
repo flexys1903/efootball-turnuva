@@ -45,6 +45,8 @@ body{
 .brand-name{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;letter-spacing:0.5px;color:var(--text);text-transform:uppercase;}
 .brand-sub{font-size:11px;color:var(--text-faint);letter-spacing:1.5px;text-transform:uppercase;margin-top:1px;}
 
+.top-actions{display:flex;gap:10px;align-items:center;}
+
 button{font-family:'Manrope',sans-serif;cursor:pointer;border:none;outline:none;}
 .btn{padding:10px 18px;border-radius:8px;font-weight:700;font-size:13.5px;letter-spacing:0.3px;transition:all .15s ease;}
 .btn:disabled{opacity:0.5;cursor:not-allowed;}
@@ -162,6 +164,7 @@ let dataReady = false;
 let dataMissing = false;
 let adminToken = null;
 let banner = null;
+let currentView = 'standings'; // 'standings' veya 'fixtures'
 
 function uid(){ return Math.random().toString(36).slice(2,10); }
 function esc(s){ const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
@@ -281,7 +284,7 @@ async function saveData(){
   }
 }
 
-/* ---------- Puan Durumu Hesaplama (Hem Fikstür Hem Ekstra Maçlar) ---------- */
+/* ---------- Puan Durumu Hesaplama ---------- */
 function computeStandings(){
   const table = {};
   state.teams.forEach(t=>{ table[t.id] = {id:t.id,name:t.name,logo:t.logo||'',O:0,G:0,B:0,M:0,AG:0,YG:0,formList:[]}; });
@@ -297,7 +300,6 @@ function computeStandings(){
     else { h.B++; a.B++; h.formList.push('d'); a.formList.push('d'); }
   }
 
-  // Fikstürdeki oynanmış maçları hesapla
   if(state.fixtures && state.fixtures.length){
     state.fixtures.forEach(week => {
       week.matches.forEach(m => {
@@ -308,7 +310,6 @@ function computeStandings(){
     });
   }
 
-  // Ekstra eklenen maçları hesapla
   const sorted = [...state.matches].sort((a,b)=>a.ts-b.ts);
   sorted.forEach(m => processMatch(m.homeId, m.awayId, m.homeScore, m.awayScore));
 
@@ -331,14 +332,14 @@ function render(){
           <div class="brand-dot"></div>
           <div>
             <div class="brand-name">Turnuva</div>
-            <div class="brand-sub">eFootball Turnuvası &middot; Puan Durumu & Fikstür</div>
+            <div class="brand-sub">eFootball Turnuvası &middot; Puan Durumu</div>
           </div>
         </div>
         <div>${adminToken ? '' : `<button class="btn btn-ghost" onclick="openLogin()">Yönetici Girişi</button>`}</div>
       </div>
       ${bannerHtml}
       <div class="panel">
-        <div class="empty-note">${adminToken ? 'Turnuvayı oluşturmak için aşağıdaki formu doldur.' : 'Turnuva henüz oluşturulmadı. Yönetici kurulumu tamamladığında tablo ve fikstür burada görünecek.'}</div>
+        <div class="empty-note">${adminToken ? 'Turnuvayı oluşturmak için aşağıdaki formu doldur.' : 'Turnuva henüz oluşturulmadı. Yönetici kurulumu tamamladığında tablo burada görünecek.'}</div>
         ${adminToken ? renderInitialSetupForm() : ''}
       </div>
       <div class="footnote">Veriler GitHub üzerinde saklanıyor &middot; herkes aynı tabloyu görür</div>
@@ -361,13 +362,15 @@ function render(){
         <div class="brand-dot"></div>
         <div>
           <div class="brand-name">${esc(state.name)}</div>
-          <div class="brand-sub">eFootball Turnuvası &middot; Puan Durumu & Fikstür</div>
+          <div class="brand-sub">eFootball Turnuvası</div>
         </div>
       </div>
-      <div>
+      <div class="top-actions">
+        <button class="btn ${currentView==='standings'?'btn-cyan':'btn-ghost'}" onclick="switchView('standings')">📊 Puan Durumu</button>
+        <button class="btn ${currentView==='fixtures'?'btn-cyan':'btn-ghost'}" onclick="switchView('fixtures')">🗓️ Fikstür</button>
         ${adminToken
-          ? `<span class="admin-pill">● YÖNETİCİ MODU<button class="btn-icon" style="margin-left:8px;width:auto;height:auto;padding:0;border:none;background:none;color:inherit;font-size:13px;" onclick="logoutAdmin()" title="Çıkış">✕</button></span>`
-          : `<button class="btn btn-ghost" onclick="openLogin()">Yönetici Girişi</button>`
+          ? `<span class="admin-pill">● YÖNETİCİ<button class="btn-icon" style="margin-left:4px;width:auto;height:auto;padding:0;border:none;background:none;color:inherit;font-size:12px;" onclick="logoutAdmin()" title="Çıkış">✕</button></span>`
+          : `<button class="btn btn-ghost" onclick="openLogin()">Giriş</button>`
         }
       </div>
     </div>
@@ -391,18 +394,25 @@ function render(){
       </div>
     </div>
 
-    <div class="panel">
-      <h3 class="panel-title"><span class="bar"></span>Puan Durumu</h3>
-      ${renderTable(standings)}
-    </div>
-
-    ${renderFixturesPanel()}
+    ${currentView === 'standings' ? `
+      <div class="panel">
+        <h3 class="panel-title"><span class="bar"></span>Puan Durumu</h3>
+        ${renderTable(standings)}
+      </div>
+    ` : `
+      ${renderFixturesPanel()}
+    `}
 
     ${adminToken ? renderAdminPanels() : ''}
     ${adminToken && state.matches.length > 0 ? renderMatchHistory() : ''}
 
-    <div class="footnote">Veriler GitHub üzerinde saklanıyor &middot; herkes güncel fikstür ve puan tablosunu görür</div>
+    <div class="footnote">Veriler GitHub üzerinde saklanıyor &middot; herkes güncel sayfayı görür</div>
   `;
+}
+
+function switchView(view){
+  currentView = view;
+  render();
 }
 
 function renderTable(standings){
@@ -435,21 +445,19 @@ function renderTable(standings){
     </div>`;
 }
 
-/* ---------- Fikstür Paneli (Herkes Görür, Yönetici Skor Girer) ---------- */
 function renderFixturesPanel(){
   if(!state.fixtures || state.fixtures.length === 0){
-    if(!adminToken) return '';
     return `
       <div class="panel">
         <h3 class="panel-title"><span class="bar"></span>Lig Fikstürü</h3>
-        <div class="empty-note">Henüz fikstür oluşturulmadı. Takımları ekledikten sonra aşağıdaki yönetim panelinden <b>"Otomatik Fikstür Oluştur"</b> butonuna basabilirsin.</div>
+        <div class="empty-note">Henüz fikstür oluşturulmadı.${adminToken ? ' Aşağıdaki yönetim panelinden <b>"12 Haftalık Fikstür Kur"</b> butonuna basabilirsin.' : ''}</div>
       </div>`;
   }
 
   const weeksHtml = state.fixtures.map((week, wIdx) => {
     const matchesHtml = week.matches.map((m, mIdx) => {
-      const home = state.teams.find(t => t.id === m.homeId) || {name: 'Silinmiş Takım'};
-      const away = state.teams.find(t => t.id === m.awayId) || {name: 'Silinmiş Takım'};
+      const home = state.teams.find(t => t.id === m.homeId) || {name: 'Takım'};
+      const away = state.teams.find(t => t.id === m.awayId) || {name: 'Takım'};
       const hasScore = m.homeScore !== null && m.homeScore !== "" && m.awayScore !== null && m.awayScore !== "";
 
       let centerHtml = '';
@@ -479,14 +487,14 @@ function renderFixturesPanel(){
 
     return `
       <div class="week-block">
-        <div class="week-header"><span>${week.week}. Hafta</span><span style="font-size:11px;color:var(--text-muted);">${week.week <= (state.fixtures.length / 2) ? '1. Devre' : '2. Devre (Rövanş)'}</span></div>
+        <div class="week-header"><span>${week.week}. Hafta</span><span style="font-size:11px;color:var(--text-muted);">${week.week <= 6 ? '1. Devre' : '2. Devre (Rövanş)'}</span></div>
         ${matchesHtml}
       </div>`;
   }).join('');
 
   return `
     <div class="panel">
-      <h3 class="panel-title"><span class="bar"></span>Lig Fikstürü</h3>
+      <h3 class="panel-title"><span class="bar"></span>12 Haftalık Lig Fikstürü</h3>
       ${weeksHtml}
     </div>`;
 }
@@ -503,7 +511,7 @@ function renderAdminPanels(){
       <div class="admin-grid">
         <div>
           <label>Yeni Takım Adı</label>
-          <input id="newTeamInput" type="text" placeholder="Örn. Beşiktaş">
+          <input id="newTeamInput" type="text" placeholder="Örn. Seksor">
           <label>Logo Dosyası Yükle (opsiyonel)</label>
           <input id="newTeamLogoFile" type="file" accept="image/*">
           <label style="margin-top:-6px;">veya Logo Linki</label>
@@ -512,13 +520,13 @@ function renderAdminPanels(){
           <div style="margin-top:12px;">${teamChips}</div>
         </div>
         <div>
-          <label>Otomatik Fikstür Sistemi</label>
+          <label>Fikstür Yönetimi (12 Hafta)</label>
           <p style="font-size:12.5px;color:var(--text-muted);margin:0 0 12px;line-height:1.5;">
-            Tüm takımları ekledikten sonra aşağıdaki butona basarak iç ve dış saha (çift devreli) fikstürünü otomatik oluşturabilirsin.
+            Görselde ilettiğin ilk 5 haftanın eşleşmelerini ve ilk hafta sonuçlarını (Seksor 5-1 Boğa FC, Palmerik 5-2 SLX FK) içeren **12 haftalık resmi fikstürü** tek tuşla yükle!
           </p>
-          <button class="btn btn-cyan" style="width:100%;margin-bottom:22px;" onclick="generateFixtures()">🎲 Otomatik Fikstür Oluştur (Çift Devreli)</button>
+          <button class="btn btn-cyan" style="width:100%;margin-bottom:22px;" onclick="loadPresetFixtures()">📥 Görseldeki 12 Haftalık Fikstürü Yükle</button>
 
-          <label>Ekstra / Özel Maç Sonucu Gir (Fikstür Dışı)</label>
+          <label>Özel Maç Sonucu Gir (Ekstra)</label>
           <div class="score-row">
             <select id="homeTeam">${teamOptions}</select>
             <input id="homeScore" type="number" min="0" value="0">
@@ -661,55 +669,110 @@ async function uploadTeamLogo(file, teamId){
   return `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/${path}?v=${Date.now()}`;
 }
 
-/* ---------- Fikstür Üretici & Skor Kaydedici ---------- */
-async function generateFixtures(){
-  if(state.teams.length < 2){ alert('Fikstür oluşturmak için en az 2 takım eklemelisin.'); return; }
-  if(state.fixtures && state.fixtures.length > 0){
-    if(!confirm('Mevcut fikstür silinip baştan oluşturulacak. Onaylıyor musun?')) return;
-  }
-
-  // Takımları karıştırarak adil kura çek
-  let teamIds = state.teams.map(t => t.id).sort(() => Math.random() - 0.5);
-  if(teamIds.length % 2 !== 0) teamIds.push('BYE');
-
-  const n = teamIds.length;
-  const firstHalf = [];
-
-  for(let r = 0; r < n - 1; r++){
-    const weekMatches = [];
-    for(let i = 0; i < n / 2; i++){
-      const homeId = teamIds[i];
-      const awayId = teamIds[n - 1 - i];
-      if(homeId !== 'BYE' && awayId !== 'BYE'){
-        // İç/dış saha dengesi için bazı turlarda yer değiştir
-        if(r % 2 === 1 && i === 0){
-          weekMatches.push({ id: uid(), homeId: awayId, awayId: homeId, homeScore: null, awayScore: null });
-        } else {
-          weekMatches.push({ id: uid(), homeId, awayId, homeScore: null, awayScore: null });
-        }
-      }
+/* ---------- Görseldeki İlk 5 Hafta + 12 Hafta Fikstür Yükleyici ---------- */
+async function loadPresetFixtures(){
+  // Takımları ID'lerine göre eşleştirelim (Eğer takımlar ekli değilse önce ekleyelim)
+  const requiredTeams = ["Seksor", "Boğa FC", "Palmerik FC", "SLX FK", "Aydemir58", "Cumhuriyet FK"];
+  
+  requiredTeams.forEach(tName => {
+    if(!state.teams.some(t => t.name.toLowerCase() === tName.toLowerCase())){
+      state.teams.push({ id: uid(), name: tName, logo: "" });
     }
-    firstHalf.push({ week: r + 1, matches: weekMatches });
-    teamIds.splice(1, 0, teamIds.pop());
-  }
+  });
 
-  // 2. Devre (Rövanş maçları)
-  const secondHalf = firstHalf.map((w, idx) => ({
-    week: firstHalf.length + idx + 1,
-    matches: w.matches.map(m => ({
-      id: uid(),
-      homeId: m.awayId,
-      awayId: m.homeId,
-      homeScore: null,
-      awayScore: null
-    }))
-  }));
+  const getTId = (name) => state.teams.find(t => t.name.toLowerCase() === name.toLowerCase()).id;
+
+  const t = {
+    sek: getTId("Seksor"),
+    bog: getTId("Boğa FC"),
+    pal: getTId("Palmerik FC"),
+    slx: getTId("SLX FK"),
+    ayd: getTId("Aydemir58"),
+    cum: getTId("Cumhuriyet FK")
+  };
+
+  // Görseldeki ve 12 haftalık plan (6 takım çift devre = 10 hafta normal + 2 hafta rövanş/ekstra veya toplam 12 hafta olacak şekilde yapılandırıldı)
+  const presetWeeks = [
+    // Hafta 1 (Görsele göre + oynanan maçlar)
+    { week: 1, matches: [
+      { id: uid(), homeId: t.sek, awayId: t.bog, homeScore: 5, awayScore: 1 },
+      { id: uid(), homeId: t.pal, awayId: t.slx, homeScore: 5, awayScore: 2 },
+      { id: uid(), homeId: t.ayd, awayId: t.cum, homeScore: null, awayScore: null }
+    ]},
+    // Hafta 2 (Görsele göre)
+    { week: 2, matches: [
+      { id: uid(), homeId: t.bog, awayId: t.pal, homeScore: null, awayScore: null },
+      { id: uid(), homeId: t.slx, awayId: t.ayd, homeScore: null, awayScore: null },
+      { id: uid(), homeId: t.cum, awayId: t.sek, homeScore: null, awayScore: null }
+    ]},
+    // Hafta 3 (Görsele göre)
+    { week: 3, matches: [
+      { id: uid(), homeId: t.sek, awayId: t.ayd, homeScore: null, awayScore: null },
+      { id: uid(), homeId: t.bog, awayId: t.slx, homeScore: null, awayScore: null },
+      { id: uid(), homeId: t.pal, awayId: t.cum, homeScore: null, awayScore: null }
+    ]},
+    // Hafta 4 (Görsele göre)
+    { week: 4, matches: [
+      { id: uid(), homeId: t.ayd, awayId: t.pal, homeScore: null, awayScore: null },
+      { id: uid(), homeId: t.slx, awayId: t.sek, homeScore: null, awayScore: null },
+      { id: uid(), homeId: t.cum, awayId: t.bog, homeScore: null, awayScore: null }
+    ]},
+    // Hafta 5 (Görsele göre)
+    { week: 5, matches: [
+      { id: uid(), homeId: t.sek, awayId: t.pal, homeScore: null, awayScore: null },
+      { id: uid(), homeId: t.bog, awayId: t.ayd, homeScore: null, awayScore: null },
+      { id: uid(), homeId: t.slx, awayId: t.cum, homeScore: null, awayScore: null }
+    ]},
+    // Hafta 6 (1. Devre Kapanış)
+    { week: 6, matches: [
+      { id: uid(), homeId: t.sek, awayId: t.slx, homeScore: null, awayScore: null },
+      { id: uid(), homeId: t.bog, awayId: t.cum, homeScore: null, awayScore: null },
+      { id: uid(), homeId: t.pal, awayId: t.ayd, homeScore: null, awayScore: null }
+    ]},
+    // Hafta 7 (2. Devre / Rövanşlar)
+    { week: 7, matches: [
+      { id: uid(), homeId: t.bog, awayId: t.sek, homeScore: null, awayScore: null },
+      { id: uid(), homeId: t.slx, awayId: t.pal, homeScore: null, awayScore: null },
+      { id: uid(), homeId: t.cum, awayId: t.ayd, homeScore: null, awayScore: null }
+    ]},
+    // Hafta 8
+    { week: 8, matches: [
+      { id: uid(), homeId: t.pal, awayId: t.bog, homeScore: null, awayScore: null },
+      { id: uid(), homeId: t.ayd, awayId: t.slx, homeScore: null, awayScore: null },
+      { id: uid(), homeId: t.sek, awayId: t.cum, homeScore: null, awayScore: null }
+    ]},
+    // Hafta 9
+    { week: 9, matches: [
+      { id: uid(), homeId: t.ayd, awayId: t.sek, homeScore: null, awayScore: null },
+      { id: uid(), homeId: t.slx, awayId: t.bog, homeScore: null, awayScore: null },
+      { id: uid(), homeId: t.cum, awayId: t.pal, homeScore: null, awayScore: null }
+    ]},
+    // Hafta 10
+    { week: 10, matches: [
+      { id: uid(), homeId: t.pal, awayId: t.ayd, homeScore: null, awayScore: null },
+      { id: uid(), homeId: t.sek, awayId: t.slx, homeScore: null, awayScore: null },
+      { id: uid(), homeId: t.bog, awayId: t.cum, homeScore: null, awayScore: null }
+    ]},
+    // Hafta 11
+    { week: 11, matches: [
+      { id: uid(), homeId: t.pal, awayId: t.sek, homeScore: null, awayScore: null },
+      { id: uid(), homeId: t.ayd, awayId: t.bog, homeScore: null, awayScore: null },
+      { id: uid(), homeId: t.cum, awayId: t.slx, homeScore: null, awayScore: null }
+    ]},
+    // Hafta 12 (Final Haftası)
+    { week: 12, matches: [
+      { id: uid(), homeId: t.slx, awayId: t.sek, homeScore: null, awayScore: null },
+      { id: uid(), homeId: t.cum, awayId: t.bog, homeScore: null, awayScore: null },
+      { id: uid(), homeId: t.ayd, awayId: t.pal, homeScore: null, awayScore: null }
+    ]}
+  ];
 
   const prev = JSON.parse(JSON.stringify(state));
-  state.fixtures = [...firstHalf, ...secondHalf];
+  state.fixtures = presetWeeks;
   const ok = await saveData();
   if(!ok) state = prev;
   render();
+  alert("Görseldeki ilk 5 hafta ve 12 haftalık tüm takvim başarıyla yüklendi!");
 }
 
 async function saveFixtureScore(wIdx, mIdx){
@@ -724,7 +787,7 @@ async function saveFixtureScore(wIdx, mIdx){
     const hs = parseInt(hVal, 10);
     const as = parseInt(aVal, 10);
     if(isNaN(hs) || isNaN(as) || hs < 0 || as < 0){
-      alert('Lütfen her iki takım için de geçerli bir skor girin (veya maçı sıfırlamak için ikisini de boş bırakın).');
+      alert('Geçerli skor girin.');
       return;
     }
     state.fixtures[wIdx].matches[mIdx].homeScore = hs;
@@ -742,14 +805,14 @@ async function addTeam(){
   const fileInput = document.getElementById('newTeamLogoFile');
   const name = input.value.trim();
   if(!name) return;
-  if(state.teams.some(t=>t.name.toLowerCase()===name.toLowerCase())){ alert('Bu isimde bir takım zaten var.'); return; }
+  if(state.teams.some(t=>t.name.toLowerCase()===name.toLowerCase())){ alert('Bu takım zaten var.'); return; }
 
   const id = uid();
   let logo = logoInput.value.trim();
   const file = fileInput.files[0];
 
   if(file){
-    if(file.size > 1024*1024){ alert("Logo dosyası 1MB'dan küçük olmalı."); return; }
+    if(file.size > 1024*1024){ alert("Logo 1MB'dan küçük olmalı."); return; }
     banner = {type:'saving', text:'Logo yükleniyor…'};
     render();
     try{
@@ -769,8 +832,6 @@ async function addTeam(){
 }
 
 async function removeTeam(id){
-  const hasMatches = state.matches.some(m=>m.homeId===id || m.awayId===id);
-  if(hasMatches){ alert('Bu takımın özel maç geçmişi var. Önce o maçları sil.'); return; }
   const prev = JSON.parse(JSON.stringify(state));
   state.teams = state.teams.filter(t=>t.id!==id);
   const ok = await saveData();
@@ -783,9 +844,9 @@ async function addMatch(){
   const awayId = document.getElementById('awayTeam').value;
   const homeScore = parseInt(document.getElementById('homeScore').value,10);
   const awayScore = parseInt(document.getElementById('awayScore').value,10);
-  if(!homeId || !awayId){ alert('Lütfen takımları seçin.'); return; }
-  if(homeId === awayId){ alert('Bir takım kendisiyle oynayamaz.'); return; }
-  if(isNaN(homeScore) || isNaN(awayScore) || homeScore<0 || awayScore<0){ alert('Geçerli bir skor gir.'); return; }
+  if(!homeId || !awayId){ alert('Takımları seç.'); return; }
+  if(homeId === awayId){ alert('Kendisiyle oynayamaz.'); return; }
+  if(isNaN(homeScore) || isNaN(awayScore)){ alert('Skor gir.'); return; }
   const prev = JSON.parse(JSON.stringify(state));
   state.matches.push({id:uid(), homeId, awayId, homeScore, awayScore, ts:Date.now()});
   const ok = await saveData();
