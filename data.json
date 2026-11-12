@@ -32,11 +32,6 @@
       "logo": "https://raw.githubusercontent.com/flexys1903/efootball-turnuva/main/logos/0rmpeht3.jpg?v=1794224716403"
     },
     {
-      "id": "pvzq3vjr",
-      "name": "Boğa FC",
-      "logo": ""
-    },
-    {
       "id": "q1et99ur",
       "name": "Palmerik FC",
       "logo": ""
@@ -265,22 +260,22 @@
           "id": "w5cgh6nh",
           "homeId": "7pxpy0xn",
           "awayId": "q1et99ur",
-          "homeScore": 4,
-          "awayScore": 5
+          "homeScore": null,
+          "awayScore": null
         },
         {
           "id": "vqblcs50",
           "homeId": "pvzq3vjr",
           "awayId": "2kijuccs",
-          "homeScore": 0,
-          "awayScore": 5
+          "homeScore": null,
+          "awayScore": null
         },
         {
           "id": "qta7ck05",
           "homeId": "873i0ltx",
           "awayId": "0rmpeht3",
-          "homeScore": 2,
-          "awayScore": 2
+          "homeScore": null,
+          "awayScore": null
         }
       ]
     },
