@@ -114,20 +114,12 @@
       "ts": 1794402879036
     },
     {
-      "id": "zz73svnq",
-      "homeId": "s4zc899s",
-      "awayId": "7pxpy0xn",
+      "id": "70brlyps",
+      "homeId": "fxhypl7c",
+      "awayId": "c4u72qwp",
       "homeScore": 5,
-      "awayScore": 4,
-      "ts": 1794489962650
-    },
-    {
-      "id": "9dm7f1te",
-      "homeId": "0rmpeht3",
-      "awayId": "873i0ltx",
-      "homeScore": 2,
-      "awayScore": 2,
-      "ts": 1794489979462
+      "awayScore": 0,
+      "ts": 1794490233914
     }
   ]
 }
