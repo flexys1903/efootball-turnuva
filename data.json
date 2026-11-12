@@ -137,5 +137,267 @@
       "awayScore": 2,
       "ts": 1794497982236
     }
+  ],
+  "fixtures": [
+    {
+      "week": 1,
+      "matches": [
+        {
+          "id": "j8mhnu09",
+          "homeId": "873i0ltx",
+          "awayId": "7pxpy0xn",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "6yos52qy",
+          "homeId": "c4u72qwp",
+          "awayId": "s4zc899s",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "rdhjumlj",
+          "homeId": "0rmpeht3",
+          "awayId": "fxhypl7c",
+          "homeScore": null,
+          "awayScore": null
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "matches": [
+        {
+          "id": "1rrri9zq",
+          "homeId": "s4zc899s",
+          "awayId": "873i0ltx",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "hdf2gpy2",
+          "homeId": "7pxpy0xn",
+          "awayId": "fxhypl7c",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "wvq3o15z",
+          "homeId": "c4u72qwp",
+          "awayId": "0rmpeht3",
+          "homeScore": null,
+          "awayScore": null
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "matches": [
+        {
+          "id": "bj5ajbtt",
+          "homeId": "873i0ltx",
+          "awayId": "fxhypl7c",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "09hio64r",
+          "homeId": "s4zc899s",
+          "awayId": "0rmpeht3",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "6ha25dqv",
+          "homeId": "7pxpy0xn",
+          "awayId": "c4u72qwp",
+          "homeScore": null,
+          "awayScore": null
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "matches": [
+        {
+          "id": "72etkbuj",
+          "homeId": "0rmpeht3",
+          "awayId": "873i0ltx",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "q0n5tzn6",
+          "homeId": "fxhypl7c",
+          "awayId": "c4u72qwp",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "62cpo8cj",
+          "homeId": "s4zc899s",
+          "awayId": "7pxpy0xn",
+          "homeScore": null,
+          "awayScore": null
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "matches": [
+        {
+          "id": "ipqz9cai",
+          "homeId": "873i0ltx",
+          "awayId": "c4u72qwp",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "uni1tacw",
+          "homeId": "0rmpeht3",
+          "awayId": "7pxpy0xn",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "exesayj7",
+          "homeId": "fxhypl7c",
+          "awayId": "s4zc899s",
+          "homeScore": null,
+          "awayScore": null
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "matches": [
+        {
+          "id": "ez8cktow",
+          "homeId": "7pxpy0xn",
+          "awayId": "873i0ltx",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "a91rjq7i",
+          "homeId": "s4zc899s",
+          "awayId": "c4u72qwp",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "lkze6fx3",
+          "homeId": "fxhypl7c",
+          "awayId": "0rmpeht3",
+          "homeScore": null,
+          "awayScore": null
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "matches": [
+        {
+          "id": "tkuedwoo",
+          "homeId": "873i0ltx",
+          "awayId": "s4zc899s",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "n6i86j1s",
+          "homeId": "fxhypl7c",
+          "awayId": "7pxpy0xn",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "owgqo67s",
+          "homeId": "0rmpeht3",
+          "awayId": "c4u72qwp",
+          "homeScore": null,
+          "awayScore": null
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "matches": [
+        {
+          "id": "97sjpd1p",
+          "homeId": "fxhypl7c",
+          "awayId": "873i0ltx",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "5wvpr9fr",
+          "homeId": "0rmpeht3",
+          "awayId": "s4zc899s",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "gt1wiai0",
+          "homeId": "c4u72qwp",
+          "awayId": "7pxpy0xn",
+          "homeScore": null,
+          "awayScore": null
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "matches": [
+        {
+          "id": "bncu8s6z",
+          "homeId": "873i0ltx",
+          "awayId": "0rmpeht3",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "no1lp2u0",
+          "homeId": "c4u72qwp",
+          "awayId": "fxhypl7c",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "lojujsjt",
+          "homeId": "7pxpy0xn",
+          "awayId": "s4zc899s",
+          "homeScore": null,
+          "awayScore": null
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "matches": [
+        {
+          "id": "ij053u0v",
+          "homeId": "c4u72qwp",
+          "awayId": "873i0ltx",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "xopbgj23",
+          "homeId": "7pxpy0xn",
+          "awayId": "0rmpeht3",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "sa52gvfd",
+          "homeId": "s4zc899s",
+          "awayId": "fxhypl7c",
+          "homeScore": null,
+          "awayScore": null
+        }
+      ]
+    }
   ]
 }
