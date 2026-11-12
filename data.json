@@ -1,6 +1,141 @@
 {
-  "name": "eFootball Süper Lig",
-  "teams": [],
-  "matches": [],
-  "fixtures": []
+  "name": "Teiaş Süper Lig",
+  "teams": [
+    {
+      "id": "s4zc899s",
+      "name": "Palmerik FK",
+      "logo": "https://raw.githubusercontent.com/flexys1903/efootball-turnuva/main/logos/s4zc899s.jpg?v=1793984107730"
+    },
+    {
+      "id": "fxhypl7c",
+      "name": "Aydemir58 FK",
+      "logo": "https://raw.githubusercontent.com/flexys1903/efootball-turnuva/main/logos/fxhypl7c.jpg?v=1793985708177"
+    },
+    {
+      "id": "873i0ltx",
+      "name": "SLX FK",
+      "logo": "https://raw.githubusercontent.com/flexys1903/efootball-turnuva/main/logos/873i0ltx.jpg?v=1793986016061"
+    },
+    {
+      "id": "7pxpy0xn",
+      "name": "Seksor",
+      "logo": "https://raw.githubusercontent.com/flexys1903/efootball-turnuva/main/logos/7pxpy0xn.jpg?v=1793986079069"
+    },
+    {
+      "id": "c4u72qwp",
+      "name": "BogaFK",
+      "logo": "https://raw.githubusercontent.com/flexys1903/efootball-turnuva/main/logos/c4u72qwp.jpg?v=1793986632129"
+    },
+    {
+      "id": "0rmpeht3",
+      "name": "Cumhuriyet FK",
+      "logo": "https://raw.githubusercontent.com/flexys1903/efootball-turnuva/main/logos/0rmpeht3.jpg?v=1794224716403"
+    }
+  ],
+  "matches": [
+    {
+      "id": "7qdp25s4",
+      "homeId": "s4zc899s",
+      "awayId": "873i0ltx",
+      "homeScore": 5,
+      "awayScore": 2,
+      "ts": 1794126679170
+    },
+    {
+      "id": "91g89mm0",
+      "homeId": "7pxpy0xn",
+      "awayId": "c4u72qwp",
+      "homeScore": 5,
+      "awayScore": 1,
+      "ts": 1794126690402
+    },
+    {
+      "id": "annsi5qa",
+      "homeId": "s4zc899s",
+      "awayId": "c4u72qwp",
+      "homeScore": 6,
+      "awayScore": 2,
+      "ts": 1794226334522
+    },
+    {
+      "id": "qceb6dn5",
+      "homeId": "fxhypl7c",
+      "awayId": "0rmpeht3",
+      "homeScore": 7,
+      "awayScore": 1,
+      "ts": 1794226364842
+    },
+    {
+      "id": "k76bpob1",
+      "homeId": "fxhypl7c",
+      "awayId": "873i0ltx",
+      "homeScore": 7,
+      "awayScore": 2,
+      "ts": 1794233924502
+    },
+    {
+      "id": "73w0ou3x",
+      "homeId": "0rmpeht3",
+      "awayId": "7pxpy0xn",
+      "homeScore": 4,
+      "awayScore": 9,
+      "ts": 1794315528486
+    },
+    {
+      "id": "pgl0qn39",
+      "homeId": "s4zc899s",
+      "awayId": "0rmpeht3",
+      "homeScore": 14,
+      "awayScore": 2,
+      "ts": 1794316797545
+    },
+    {
+      "id": "r96eh87x",
+      "homeId": "c4u72qwp",
+      "awayId": "873i0ltx",
+      "homeScore": 8,
+      "awayScore": 2,
+      "ts": 1794316819459
+    },
+    {
+      "id": "zgbsyw7n",
+      "homeId": "fxhypl7c",
+      "awayId": "7pxpy0xn",
+      "homeScore": 1,
+      "awayScore": 0,
+      "ts": 1794317125284
+    },
+    {
+      "id": "pja2l20z",
+      "homeId": "fxhypl7c",
+      "awayId": "s4zc899s",
+      "homeScore": 3,
+      "awayScore": 3,
+      "ts": 1794402879036
+    },
+    {
+      "id": "70brlyps",
+      "homeId": "fxhypl7c",
+      "awayId": "c4u72qwp",
+      "homeScore": 5,
+      "awayScore": 0,
+      "ts": 1794490233914
+    },
+    {
+      "id": "ymhxdg3v",
+      "homeId": "s4zc899s",
+      "awayId": "7pxpy0xn",
+      "homeScore": 5,
+      "awayScore": 4,
+      "ts": 1794490274323
+    },
+    {
+      "id": "f6tmhv1v",
+      "homeId": "873i0ltx",
+      "awayId": "0rmpeht3",
+      "homeScore": 2,
+      "awayScore": 2,
+      "ts": 1794497982236
+    }
+  ]
 }
