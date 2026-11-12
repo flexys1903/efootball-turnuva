@@ -32,109 +32,267 @@
       "logo": "https://raw.githubusercontent.com/flexys1903/efootball-turnuva/main/logos/0rmpeht3.jpg?v=1794224716403"
     }
   ],
-  "matches": [
+  "fixtures": [
     {
-      "id": "7qdp25s4",
-      "homeId": "s4zc899s",
-      "awayId": "873i0ltx",
-      "homeScore": 5,
-      "awayScore": 2,
-      "ts": 1794126679170
+      "week": 1,
+      "matches": [
+        {
+          "id": "c408yj8x",
+          "homeId": "873i0ltx",
+          "awayId": "c4u72qwp",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "94ah85hd",
+          "homeId": "0rmpeht3",
+          "awayId": "fxhypl7c",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "8hrk2is8",
+          "homeId": "7pxpy0xn",
+          "awayId": "s4zc899s",
+          "homeScore": null,
+          "awayScore": null
+        }
+      ]
     },
     {
-      "id": "91g89mm0",
-      "homeId": "7pxpy0xn",
-      "awayId": "c4u72qwp",
-      "homeScore": 5,
-      "awayScore": 1,
-      "ts": 1794126690402
+      "week": 2,
+      "matches": [
+        {
+          "id": "qtpqwv50",
+          "homeId": "fxhypl7c",
+          "awayId": "873i0ltx",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "w8dlwvh0",
+          "homeId": "c4u72qwp",
+          "awayId": "s4zc899s",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "n7sdx1tl",
+          "homeId": "0rmpeht3",
+          "awayId": "7pxpy0xn",
+          "homeScore": null,
+          "awayScore": null
+        }
+      ]
     },
     {
-      "id": "annsi5qa",
-      "homeId": "s4zc899s",
-      "awayId": "c4u72qwp",
-      "homeScore": 6,
-      "awayScore": 2,
-      "ts": 1794226334522
+      "week": 3,
+      "matches": [
+        {
+          "id": "pospzmkv",
+          "homeId": "873i0ltx",
+          "awayId": "s4zc899s",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "7ls3vbd5",
+          "homeId": "fxhypl7c",
+          "awayId": "7pxpy0xn",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "gezujzod",
+          "homeId": "c4u72qwp",
+          "awayId": "0rmpeht3",
+          "homeScore": null,
+          "awayScore": null
+        }
+      ]
     },
     {
-      "id": "qceb6dn5",
-      "homeId": "fxhypl7c",
-      "awayId": "0rmpeht3",
-      "homeScore": 7,
-      "awayScore": 1,
-      "ts": 1794226364842
+      "week": 4,
+      "matches": [
+        {
+          "id": "lzp62eg7",
+          "homeId": "7pxpy0xn",
+          "awayId": "873i0ltx",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "jekxf4rt",
+          "homeId": "s4zc899s",
+          "awayId": "0rmpeht3",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "0fi7itf4",
+          "homeId": "fxhypl7c",
+          "awayId": "c4u72qwp",
+          "homeScore": null,
+          "awayScore": null
+        }
+      ]
     },
     {
-      "id": "k76bpob1",
-      "homeId": "fxhypl7c",
-      "awayId": "873i0ltx",
-      "homeScore": 7,
-      "awayScore": 2,
-      "ts": 1794233924502
+      "week": 5,
+      "matches": [
+        {
+          "id": "2xi8j144",
+          "homeId": "873i0ltx",
+          "awayId": "0rmpeht3",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "spuxgbkk",
+          "homeId": "7pxpy0xn",
+          "awayId": "c4u72qwp",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "8p20n9x5",
+          "homeId": "s4zc899s",
+          "awayId": "fxhypl7c",
+          "homeScore": null,
+          "awayScore": null
+        }
+      ]
     },
     {
-      "id": "73w0ou3x",
-      "homeId": "0rmpeht3",
-      "awayId": "7pxpy0xn",
-      "homeScore": 4,
-      "awayScore": 9,
-      "ts": 1794315528486
+      "week": 6,
+      "matches": [
+        {
+          "id": "anaiq464",
+          "homeId": "c4u72qwp",
+          "awayId": "873i0ltx",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "7l6h4tzu",
+          "homeId": "fxhypl7c",
+          "awayId": "0rmpeht3",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "71ovubuo",
+          "homeId": "s4zc899s",
+          "awayId": "7pxpy0xn",
+          "homeScore": null,
+          "awayScore": null
+        }
+      ]
     },
     {
-      "id": "pgl0qn39",
-      "homeId": "s4zc899s",
-      "awayId": "0rmpeht3",
-      "homeScore": 14,
-      "awayScore": 2,
-      "ts": 1794316797545
+      "week": 7,
+      "matches": [
+        {
+          "id": "j0cktvp0",
+          "homeId": "873i0ltx",
+          "awayId": "fxhypl7c",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "7vj6yw8i",
+          "homeId": "s4zc899s",
+          "awayId": "c4u72qwp",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "7edb3yl0",
+          "homeId": "7pxpy0xn",
+          "awayId": "0rmpeht3",
+          "homeScore": null,
+          "awayScore": null
+        }
+      ]
     },
     {
-      "id": "r96eh87x",
-      "homeId": "c4u72qwp",
-      "awayId": "873i0ltx",
-      "homeScore": 8,
-      "awayScore": 2,
-      "ts": 1794316819459
+      "week": 8,
+      "matches": [
+        {
+          "id": "c5k1ztd9",
+          "homeId": "s4zc899s",
+          "awayId": "873i0ltx",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "dqgjqqkg",
+          "homeId": "7pxpy0xn",
+          "awayId": "fxhypl7c",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "zzx4a3wc",
+          "homeId": "0rmpeht3",
+          "awayId": "c4u72qwp",
+          "homeScore": null,
+          "awayScore": null
+        }
+      ]
     },
     {
-      "id": "zgbsyw7n",
-      "homeId": "fxhypl7c",
-      "awayId": "7pxpy0xn",
-      "homeScore": 1,
-      "awayScore": 0,
-      "ts": 1794317125284
+      "week": 9,
+      "matches": [
+        {
+          "id": "qeooi6m8",
+          "homeId": "873i0ltx",
+          "awayId": "7pxpy0xn",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "qt7qv7hz",
+          "homeId": "0rmpeht3",
+          "awayId": "s4zc899s",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "ov2ln4iz",
+          "homeId": "c4u72qwp",
+          "awayId": "fxhypl7c",
+          "homeScore": null,
+          "awayScore": null
+        }
+      ]
     },
     {
-      "id": "pja2l20z",
-      "homeId": "fxhypl7c",
-      "awayId": "s4zc899s",
-      "homeScore": 3,
-      "awayScore": 3,
-      "ts": 1794402879036
-    },
-    {
-      "id": "70brlyps",
-      "homeId": "fxhypl7c",
-      "awayId": "c4u72qwp",
-      "homeScore": 5,
-      "awayScore": 0,
-      "ts": 1794490233914
-    },
-    {
-      "id": "ymhxdg3v",
-      "homeId": "s4zc899s",
-      "awayId": "7pxpy0xn",
-      "homeScore": 5,
-      "awayScore": 4,
-      "ts": 1794490274323
-    },
-    {
-      "id": "f6tmhv1v",
-      "homeId": "873i0ltx",
-      "awayId": "0rmpeht3",
-      "homeScore": 2,
-      "awayScore": 2,
-      "ts": 1794497982236
+      "week": 10,
+      "matches": [
+        {
+          "id": "wbgp8y9l",
+          "homeId": "0rmpeht3",
+          "awayId": "873i0ltx",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "ra8d19ei",
+          "homeId": "c4u72qwp",
+          "awayId": "7pxpy0xn",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "0ql3lqun",
+          "homeId": "fxhypl7c",
+          "awayId": "s4zc899s",
+          "homeScore": null,
+          "awayScore": null
+        }
+      ]
     }
-  ]
+  ],
+  "matches": []
+}
