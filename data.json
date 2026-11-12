@@ -32,267 +32,109 @@
       "logo": "https://raw.githubusercontent.com/flexys1903/efootball-turnuva/main/logos/0rmpeht3.jpg?v=1794224716403"
     }
   ],
-  "fixtures": [
+  "matches": [
     {
-      "week": 1,
-      "matches": [
-        {
-          "id": "5fgyhwi4",
-          "homeId": "873i0ltx",
-          "awayId": "0rmpeht3",
-          "homeScore": 2,
-          "awayScore": 2
-        },
-        {
-          "id": "l2a380nd",
-          "homeId": "s4zc899s",
-          "awayId": "7pxpy0xn",
-          "homeScore": 5,
-          "awayScore": 4
-        },
-        {
-          "id": "tpw3d9j3",
-          "homeId": "fxhypl7c",
-          "awayId": "c4u72qwp",
-          "homeScore": 5,
-          "awayScore": 0
-        }
-      ]
+      "id": "7qdp25s4",
+      "homeId": "s4zc899s",
+      "awayId": "873i0ltx",
+      "homeScore": 5,
+      "awayScore": 2,
+      "ts": 1794126679170
     },
     {
-      "week": 2,
-      "matches": [
-        {
-          "id": "cof3wjfo",
-          "homeId": "7pxpy0xn",
-          "awayId": "873i0ltx",
-          "homeScore": null,
-          "awayScore": null
-        },
-        {
-          "id": "x38bkegi",
-          "homeId": "0rmpeht3",
-          "awayId": "c4u72qwp",
-          "homeScore": null,
-          "awayScore": null
-        },
-        {
-          "id": "4zy1q4y8",
-          "homeId": "s4zc899s",
-          "awayId": "fxhypl7c",
-          "homeScore": 3,
-          "awayScore": 3
-        }
-      ]
+      "id": "91g89mm0",
+      "homeId": "7pxpy0xn",
+      "awayId": "c4u72qwp",
+      "homeScore": 5,
+      "awayScore": 1,
+      "ts": 1794126690402
     },
     {
-      "week": 3,
-      "matches": [
-        {
-          "id": "p5w2wtiy",
-          "homeId": "873i0ltx",
-          "awayId": "c4u72qwp",
-          "homeScore": null,
-          "awayScore": null
-        },
-        {
-          "id": "3864z4pa",
-          "homeId": "7pxpy0xn",
-          "awayId": "fxhypl7c",
-          "homeScore": null,
-          "awayScore": null
-        },
-        {
-          "id": "3gfp3jf5",
-          "homeId": "0rmpeht3",
-          "awayId": "s4zc899s",
-          "homeScore": null,
-          "awayScore": null
-        }
-      ]
+      "id": "annsi5qa",
+      "homeId": "s4zc899s",
+      "awayId": "c4u72qwp",
+      "homeScore": 6,
+      "awayScore": 2,
+      "ts": 1794226334522
     },
     {
-      "week": 4,
-      "matches": [
-        {
-          "id": "pjm70d7y",
-          "homeId": "fxhypl7c",
-          "awayId": "873i0ltx",
-          "homeScore": null,
-          "awayScore": null
-        },
-        {
-          "id": "n551s1za",
-          "homeId": "c4u72qwp",
-          "awayId": "s4zc899s",
-          "homeScore": null,
-          "awayScore": null
-        },
-        {
-          "id": "rpw08d2f",
-          "homeId": "7pxpy0xn",
-          "awayId": "0rmpeht3",
-          "homeScore": null,
-          "awayScore": null
-        }
-      ]
+      "id": "qceb6dn5",
+      "homeId": "fxhypl7c",
+      "awayId": "0rmpeht3",
+      "homeScore": 7,
+      "awayScore": 1,
+      "ts": 1794226364842
     },
     {
-      "week": 5,
-      "matches": [
-        {
-          "id": "u52chuzc",
-          "homeId": "873i0ltx",
-          "awayId": "s4zc899s",
-          "homeScore": null,
-          "awayScore": null
-        },
-        {
-          "id": "6nfq9j3e",
-          "homeId": "fxhypl7c",
-          "awayId": "0rmpeht3",
-          "homeScore": null,
-          "awayScore": null
-        },
-        {
-          "id": "gr0fvb0q",
-          "homeId": "c4u72qwp",
-          "awayId": "7pxpy0xn",
-          "homeScore": null,
-          "awayScore": null
-        }
-      ]
+      "id": "k76bpob1",
+      "homeId": "fxhypl7c",
+      "awayId": "873i0ltx",
+      "homeScore": 7,
+      "awayScore": 2,
+      "ts": 1794233924502
     },
     {
-      "week": 6,
-      "matches": [
-        {
-          "id": "ljhaj9dk",
-          "homeId": "0rmpeht3",
-          "awayId": "873i0ltx",
-          "homeScore": null,
-          "awayScore": null
-        },
-        {
-          "id": "a3ks8ph3",
-          "homeId": "7pxpy0xn",
-          "awayId": "s4zc899s",
-          "homeScore": null,
-          "awayScore": null
-        },
-        {
-          "id": "l901jcp8",
-          "homeId": "c4u72qwp",
-          "awayId": "fxhypl7c",
-          "homeScore": null,
-          "awayScore": null
-        }
-      ]
+      "id": "73w0ou3x",
+      "homeId": "0rmpeht3",
+      "awayId": "7pxpy0xn",
+      "homeScore": 4,
+      "awayScore": 9,
+      "ts": 1794315528486
     },
     {
-      "week": 7,
-      "matches": [
-        {
-          "id": "3tcnu0rd",
-          "homeId": "873i0ltx",
-          "awayId": "7pxpy0xn",
-          "homeScore": null,
-          "awayScore": null
-        },
-        {
-          "id": "z97096a1",
-          "homeId": "c4u72qwp",
-          "awayId": "0rmpeht3",
-          "homeScore": null,
-          "awayScore": null
-        },
-        {
-          "id": "oimc6mmp",
-          "homeId": "fxhypl7c",
-          "awayId": "s4zc899s",
-          "homeScore": null,
-          "awayScore": null
-        }
-      ]
+      "id": "pgl0qn39",
+      "homeId": "s4zc899s",
+      "awayId": "0rmpeht3",
+      "homeScore": 14,
+      "awayScore": 2,
+      "ts": 1794316797545
     },
     {
-      "week": 8,
-      "matches": [
-        {
-          "id": "9k8pjrfh",
-          "homeId": "c4u72qwp",
-          "awayId": "873i0ltx",
-          "homeScore": null,
-          "awayScore": null
-        },
-        {
-          "id": "yagih327",
-          "homeId": "fxhypl7c",
-          "awayId": "7pxpy0xn",
-          "homeScore": null,
-          "awayScore": null
-        },
-        {
-          "id": "1hp9laqm",
-          "homeId": "s4zc899s",
-          "awayId": "0rmpeht3",
-          "homeScore": null,
-          "awayScore": null
-        }
-      ]
+      "id": "r96eh87x",
+      "homeId": "c4u72qwp",
+      "awayId": "873i0ltx",
+      "homeScore": 8,
+      "awayScore": 2,
+      "ts": 1794316819459
     },
     {
-      "week": 9,
-      "matches": [
-        {
-          "id": "vbqujxhb",
-          "homeId": "873i0ltx",
-          "awayId": "fxhypl7c",
-          "homeScore": null,
-          "awayScore": null
-        },
-        {
-          "id": "ch6y7n0a",
-          "homeId": "s4zc899s",
-          "awayId": "c4u72qwp",
-          "homeScore": null,
-          "awayScore": null
-        },
-        {
-          "id": "zgigzlx9",
-          "homeId": "0rmpeht3",
-          "awayId": "7pxpy0xn",
-          "homeScore": null,
-          "awayScore": null
-        }
-      ]
+      "id": "zgbsyw7n",
+      "homeId": "fxhypl7c",
+      "awayId": "7pxpy0xn",
+      "homeScore": 1,
+      "awayScore": 0,
+      "ts": 1794317125284
     },
     {
-      "week": 10,
-      "matches": [
-        {
-          "id": "kkgrhske",
-          "homeId": "s4zc899s",
-          "awayId": "873i0ltx",
-          "homeScore": null,
-          "awayScore": null
-        },
-        {
-          "id": "e4eks6g9",
-          "homeId": "0rmpeht3",
-          "awayId": "fxhypl7c",
-          "homeScore": null,
-          "awayScore": null
-        },
-        {
-          "id": "finu0ol4",
-          "homeId": "7pxpy0xn",
-          "awayId": "c4u72qwp",
-          "homeScore": null,
-          "awayScore": null
-        }
-      ]
+      "id": "pja2l20z",
+      "homeId": "fxhypl7c",
+      "awayId": "s4zc899s",
+      "homeScore": 3,
+      "awayScore": 3,
+      "ts": 1794402879036
+    },
+    {
+      "id": "70brlyps",
+      "homeId": "fxhypl7c",
+      "awayId": "c4u72qwp",
+      "homeScore": 5,
+      "awayScore": 0,
+      "ts": 1794490233914
+    },
+    {
+      "id": "ymhxdg3v",
+      "homeId": "s4zc899s",
+      "awayId": "7pxpy0xn",
+      "homeScore": 5,
+      "awayScore": 4,
+      "ts": 1794490274323
+    },
+    {
+      "id": "f6tmhv1v",
+      "homeId": "873i0ltx",
+      "awayId": "0rmpeht3",
+      "homeScore": 2,
+      "awayScore": 2,
+      "ts": 1794497982236
     }
-  ],
-  "matches": []
-}
+  ]
