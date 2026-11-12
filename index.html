@@ -672,7 +672,7 @@ async function uploadTeamLogo(file, teamId){
 /* ---------- Görseldeki İlk 5 Hafta + 12 Hafta Fikstür Yükleyici ---------- */
 async function loadPresetFixtures(){
   // Takımları ID'lerine göre eşleştirelim (Eğer takımlar ekli değilse önce ekleyelim)
-  const requiredTeams = ["Seksor", "Boğa FC", "Palmerik FC", "SLX FK", "Aydemir58", "Cumhuriyet FK"];
+  const requiredTeams = ["Seksor", "Boğa FK", "Palmerik FK", "SLX FK", "Aydemir58 FK", "Cumhuriyet FK"];
   
   requiredTeams.forEach(tName => {
     if(!state.teams.some(t => t.name.toLowerCase() === tName.toLowerCase())){
