@@ -3,44 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>eFootball Turnuvası - Puan Durumu ve Fikstür</title>
+<title>eFootball Turnuvası - Puan Durumu</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap');
-​:root{
---bg-deep:#061620;
---bg-surface:#0b2029;
---bg-elevated:#102b38;
---bg-elevated-2:#153444;
---line:#1d4351;
---cyan:#2de3ff;
---cyan-dim:#17b8d1;
---cyan-soft:rgba(45,227,255,0.12);
---pink:#ff6fb4;
---pink-soft:rgba(255,111,180,0.12);
---gold:#ffd76a;
---text:#eaf7fb;
---text-muted:#7fa3b3;
---text-faint:#4d7684;
+
+:root{
+  --bg-deep:#061620;
+  --bg-surface:#0b2029;
+  --bg-elevated:#102b38;
+  --bg-elevated-2:#153444;
+  --line:#1d4351;
+  --cyan:#2de3ff;
+  --cyan-dim:#17b8d1;
+  --cyan-soft:rgba(45,227,255,0.12);
+  --pink:#ff6fb4;
+  --pink-soft:rgba(255,111,180,0.12);
+  --gold:#ffd76a;
+  --text:#eaf7fb;
+  --text-muted:#7fa3b3;
+  --text-faint:#4d7684;
 }
-​*{box-sizing:border-box;}
+
+*{box-sizing:border-box;}
 html,body{margin:0;padding:0;}
 body{
-background:
-radial-gradient(ellipse 900px 500px at 15% -10%, rgba(45,227,255,0.10), transparent 60%),
-radial-gradient(ellipse 700px 500px at 100% 10%, rgba(255,111,180,0.07), transparent 60%),
-var(--bg-deep);
-color:var(--text);
-font-family:'Manrope',sans-serif;
-min-height:100vh;
--webkit-font-smoothing:antialiased;
+  background:
+    radial-gradient(ellipse 900px 500px at 15% -10%, rgba(45,227,255,0.10), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 100% 10%, rgba(255,111,180,0.07), transparent 60%),
+    var(--bg-deep);
+  color:var(--text);
+  font-family:'Manrope',sans-serif;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
 }
-​.wrap{max-width:1040px;margin:0 auto;padding:28px 20px 80px;}
-​.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:26px;}
+
+.wrap{max-width:1040px;margin:0 auto;padding:28px 20px 80px;}
+
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:26px;}
 .brand{display:flex;align-items:center;gap:12px;}
 .brand-dot{width:12px;height:12px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px 2px var(--cyan), 0 0 24px 6px rgba(45,227,255,0.35);flex-shrink:0;}
 .brand-name{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;letter-spacing:0.5px;color:var(--text);text-transform:uppercase;}
 .brand-sub{font-size:11px;color:var(--text-faint);letter-spacing:1.5px;text-transform:uppercase;margin-top:1px;}
-​button{font-family:'Manrope',sans-serif;cursor:pointer;border:none;outline:none;}
+
+button{font-family:'Manrope',sans-serif;cursor:pointer;border:none;outline:none;}
 .btn{padding:10px 18px;border-radius:8px;font-weight:700;font-size:13.5px;letter-spacing:0.3px;transition:all .15s ease;}
 .btn:disabled{opacity:0.5;cursor:not-allowed;}
 .btn-ghost{background:transparent;border:1px solid var(--line);color:var(--text-muted);}
@@ -51,7 +56,8 @@ min-height:100vh;
 .btn-icon{width:30px;height:30px;border-radius:6px;background:transparent;border:1px solid var(--line);color:var(--text-faint);display:flex;align-items:center;justify-content:center;font-size:14px;}
 .btn-icon:hover{border-color:var(--pink);color:var(--pink);}
 .admin-pill{display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:20px;background:var(--cyan-soft);border:1px solid rgba(45,227,255,0.35);font-size:12.5px;color:var(--cyan);font-weight:700;letter-spacing:0.3px;}
-​.scoreboard{background:linear-gradient(180deg,var(--bg-surface),var(--bg-elevated));border:1px solid var(--line);border-radius:16px;padding:22px 26px;margin-bottom:24px;position:relative;overflow:hidden;}
+
+.scoreboard{background:linear-gradient(180deg,var(--bg-surface),var(--bg-elevated));border:1px solid var(--line);border-radius:16px;padding:22px 26px;margin-bottom:24px;position:relative;overflow:hidden;}
 .scoreboard::before{content:'';position:absolute;top:0;left:-30%;width:30%;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);animation:scan 3.5s linear infinite;}
 @keyframes scan{ to{ left:130%; } }
 .scoreboard-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
@@ -62,10 +68,12 @@ min-height:100vh;
 .sb-value{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:26px;color:var(--text);line-height:1;}
 .sb-value.accent{color:var(--cyan);text-shadow:0 0 16px rgba(45,227,255,0.4);}
 .sb-value.small{font-size:18px;}
-​.panel{background:var(--bg-surface);border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:22px;}
+
+.panel{background:var(--bg-surface);border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:22px;}
 .panel-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;letter-spacing:0.5px;text-transform:uppercase;color:var(--text);margin:0 0 16px;display:flex;align-items:center;gap:10px;}
 .panel-title .bar{width:4px;height:16px;background:var(--cyan);border-radius:2px;box-shadow:0 0 8px var(--cyan);}
-​table{width:100%;border-collapse:collapse;font-size:13.5px;}
+
+table{width:100%;border-collapse:collapse;font-size:13.5px;}
 thead th{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--text-faint);text-align:center;padding:8px 6px;border-bottom:1px solid var(--line);}
 thead th.left{text-align:left;}
 tbody td{padding:11px 6px;text-align:center;border-bottom:1px solid rgba(29,67,81,0.5);font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text);}
@@ -84,9 +92,11 @@ tbody tr.leader td.left{color:var(--cyan);}
 .form-dot.d{background:var(--text-faint);}
 .form-dot.l{background:var(--pink);box-shadow:0 0 5px var(--pink);}
 .empty-note{color:var(--text-faint);font-size:13px;padding:14px 4px;text-align:center;}
-​.admin-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:20px;}
+
+.admin-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:20px;}
 @media(max-width:760px){.admin-grid{grid-template-columns:1fr;}}
-​label{display:block;font-size:11.5px;letter-spacing:0.6px;text-transform:uppercase;color:var(--text-faint);margin-bottom:6px;font-weight:700;}
+
+label{display:block;font-size:11.5px;letter-spacing:0.6px;text-transform:uppercase;color:var(--text-faint);margin-bottom:6px;font-weight:700;}
 input,select{width:100%;background:var(--bg-elevated);border:1px solid var(--line);color:var(--text);padding:10px 12px;border-radius:8px;font-size:14px;font-family:'Manrope',sans-serif;margin-bottom:14px;}
 input[type="file"]{padding:8px 10px;font-size:12.5px;color:var(--text-muted);}
 input[type="file"]::file-selector-button{background:var(--bg-elevated-2);color:var(--cyan);border:1px solid var(--line);border-radius:6px;padding:6px 10px;font-size:12px;font-weight:700;margin-right:10px;cursor:pointer;}
@@ -95,511 +105,524 @@ input:focus,select:focus{border-color:var(--cyan-dim);outline:none;}
 .score-row select{margin-bottom:0;}
 .score-row input{margin-bottom:0;text-align:center;}
 .vs-label{text-align:center;color:var(--text-faint);font-family:'Rajdhani',sans-serif;font-weight:700;padding-top:10px;}
-​.team-badge{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+.team-badge{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;}
 .team-badge-img{border-radius:6px;object-fit:cover;background:var(--bg-elevated);flex-shrink:0;}
 .team-badge-fallback{align-items:center;justify-content:center;border-radius:6px;background:var(--bg-elevated);color:var(--cyan);font-family:'Rajdhani',sans-serif;font-weight:700;flex-shrink:0;}
 .team-cell{display:flex;align-items:center;gap:9px;}
-​.team-chip{display:flex;justify-content:space-between;align-items:center;background:var(--bg-elevated);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin-bottom:8px;font-size:14px;font-weight:600;}
+
+.team-chip{display:flex;justify-content:space-between;align-items:center;background:var(--bg-elevated);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin-bottom:8px;font-size:14px;font-weight:600;}
 .team-chip .team-cell{gap:10px;}
-​/* Fikstür Stilleri */
-.fixture-section{margin-top:20px;}
-.hafta-box{background:var(--bg-elevated);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:14px;}
-.hafta-baslik{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;color:var(--cyan);margin-bottom:10px;letter-spacing:0.5px;border-bottom:1px dashed var(--line);padding-bottom:6px;display:flex;justify-content:space-between;align-items:center;}
-.mac-satir{display:grid;grid-template-columns:1fr 60px 16px 60px 1fr;gap:8px;align-items:center;padding:6px 0;font-size:13.5px;}
-.mac-satir .team-home{text-align:right;font-weight:600;}
-.mac-satir .team-away{text-align:left;font-weight:600;}
-.mac-satir input{margin-bottom:0;text-align:center;padding:6px 4px;font-family:'JetBrains Mono',monospace;}
-.mac-satir-view{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(16,43,56,0.5);border-radius:6px;margin-bottom:6px;font-size:13.5px;}
-.mac-satir-view .score-badge{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--cyan);background:var(--cyan-soft);padding:3px 10px;border-radius:6px;}
-​.modal-overlay{position:fixed;inset:0;background:rgba(3,10,15,0.75);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;z-index:50;padding:20px;}
+
+.match-item{display:flex;justify-content:space-between;align-items:center;padding:10px 4px;border-bottom:1px solid rgba(29,67,81,0.5);font-size:14px;}
+.match-item .teams{font-weight:600;}
+.match-item .score{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--cyan);background:var(--cyan-soft);padding:3px 10px;border-radius:6px;margin:0 10px;}
+.match-date{font-size:11px;color:var(--text-faint);margin-right:8px;}
+
+.modal-overlay{position:fixed;inset:0;background:rgba(3,10,15,0.75);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;z-index:50;padding:20px;}
 .modal{background:linear-gradient(180deg,var(--bg-surface),var(--bg-elevated));border:1px solid var(--line);border-radius:16px;padding:28px;max-width:420px;width:100%;box-shadow:0 0 40px rgba(45,227,255,0.1);}
 .modal h2{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:20px;text-transform:uppercase;letter-spacing:0.5px;margin:0 0 6px;color:var(--text);}
 .modal p{font-size:13px;color:var(--text-muted);margin:0 0 20px;line-height:1.5;}
 .modal p a{color:var(--cyan);}
 .modal-error{color:var(--pink);font-size:12.5px;margin:-8px 0 12px;min-height:16px;}
 .modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:6px;}
-​.status-banner{display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:10px;font-size:12.5px;margin-bottom:18px;}
+
+.status-banner{display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:10px;font-size:12.5px;margin-bottom:18px;}
 .status-banner.saving{background:var(--cyan-soft);color:var(--cyan);border:1px solid rgba(45,227,255,0.3);}
 .status-banner.error{background:var(--pink-soft);color:var(--pink);border:1px solid rgba(255,111,180,0.3);}
-​.footnote{text-align:center;color:var(--text-faint);font-size:11.5px;margin-top:30px;letter-spacing:0.3px;}
+
+.footnote{text-align:center;color:var(--text-faint);font-size:11.5px;margin-top:30px;letter-spacing:0.3px;}
 </style>
 </head>
 <body>
 <div class="wrap" id="app">Yükleniyor…</div>
-​<script>
-/* ====== Bu siteye özel GitHub ayarları ====== /
+
+<script>
+/* ====== GitHub Ayarları ====== */
 const OWNER = 'flexys1903';
 const REPO = 'efootball-turnuva';
 const BRANCH = 'main';
 const FILE_PATH = 'data.json';
-/ ============================================ */
-​let state = null;        // {name, teams:[{id,name}], matches:[...], fixture:[...]}
+/* ============================= */
+
+let state = null;
 let dataReady = false;
 let dataMissing = false;
 let adminToken = null;
 let banner = null;
-​function uid(){ return Math.random().toString(36).slice(2,10); }
+
+function uid(){ return Math.random().toString(36).slice(2,10); }
 function esc(s){ const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
-​function initials(name){
-const parts = name.trim().split(/\s+/).filter(Boolean);
-if(parts.length === 0) return '?';
-if(parts.length === 1) return parts[0].slice(0,2).toUpperCase();
-return (parts[0][0] + parts[1][0]).toUpperCase();
+
+function initials(name){
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  if(parts.length === 0) return '?';
+  if(parts.length === 1) return parts[0].slice(0,2).toUpperCase();
+  return (parts[0][0] + parts[1][0]).toUpperCase();
 }
-​function teamBadge(team, size){
-const fallback = <span class="team-badge-fallback" style="display:${team.logo?'none':'flex'};width:${size}px;height:${size}px;font-size:${Math.round(size*0.4)}px;">${esc(initials(team.name))}</span>;
-const img = team.logo
-? <img class="team-badge-img" src="${esc(team.logo)}" alt="" style="width:${size}px;height:${size}px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-: '';
-return <span class="team-badge">${img}${fallback}</span>;
+
+function teamBadge(team, size){
+  const fallback = `<span class="team-badge-fallback" style="display:${team.logo?'none':'flex'};width:${size}px;height:${size}px;font-size:${Math.round(size*0.4)}px;">${esc(initials(team.name))}</span>`;
+  const img = team.logo
+    ? `<img class="team-badge-img" src="${esc(team.logo)}" alt="" style="width:${size}px;height:${size}px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">`
+    : '';
+  return `<span class="team-badge">${img}${fallback}</span>`;
 }
-​function b64EncodeUnicode(str){
-return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (m,p1)=>String.fromCharCode('0x'+p1)));
+
+function b64EncodeUnicode(str){
+  return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (m,p1)=>String.fromCharCode('0x'+p1)));
 }
-​/* ---------- GitHub'dan veri okuma ---------- */
+
+/* ---------- GitHub'dan Veri Okuma (Zaman Aşımı Korumalı) ---------- */
 async function loadData(silent){
-if(!silent) banner = null;
-try{
-const url = https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/${FILE_PATH}?_=${Date.now()};
-const res = await fetch(url, {cache:'no-store'});
-if(res.status === 404){
-state = null; dataMissing = true;
-}else if(res.ok){
-state = await res.json();
-if(!state.fixture) state.fixture = [];
-dataMissing = false;
-}else{
-throw new Error('Sunucu yanıtı: ' + res.status);
+  if(!silent) banner = null;
+  try{
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 saniye bekleme sınırı
+    
+    const url = `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/${FILE_PATH}?_=${Date.now()}`;
+    const res = await fetch(url, {cache:'no-store', signal: controller.signal});
+    clearTimeout(timeoutId);
+
+    if(res.status === 404){
+      state = null; dataMissing = true;
+    }else if(res.ok){
+      state = await res.json(); dataMissing = false;
+    }else{
+      state = null; dataMissing = true;
+    }
+  }catch(e){
+    console.log("Dosya bulunamadı veya henüz oluşturulmamış, kurulum ekranına geçiliyor.");
+    state = null; dataMissing = true;
+  }
+  dataReady = true;
+  render();
 }
-}catch(e){
-console.error(e);
-if(!silent) banner = {type:'error', text:'Veriler yüklenemedi. İnternet bağlantını kontrol et ve sayfayı yenile.'};
-}
-dataReady = true;
-render();
-}
-​/* ---------- GitHub'a veri yazma ---------- */
+
+/* ---------- GitHub'a Veri Yazma ---------- */
 async function fetchCurrentSha(apiUrl){
-const getRes = await fetch(${apiUrl}?ref=${BRANCH}&_=${Date.now()}, {
-cache:'no-store',
-headers:{ Authorization:Bearer ${adminToken}, Accept:'application/vnd.github+json' }
-});
-if(getRes.status === 200){
-const j = await getRes.json();
-return j.sha;
-}else if(getRes.status === 404){
-return null;
-}else{
-throw new Error('Okuma hatası (' + getRes.status + ')');
+  const getRes = await fetch(`${apiUrl}?ref=${BRANCH}&_=${Date.now()}`, {
+    cache:'no-store',
+    headers:{ Authorization:`Bearer ${adminToken}`, Accept:'application/vnd.github+json' }
+  });
+  if(getRes.status === 200){
+    const j = await getRes.json();
+    return j.sha;
+  }else if(getRes.status === 404){
+    return null;
+  }else{
+    throw new Error('Okuma hatası (' + getRes.status + ')');
+  }
 }
+
+async function saveData(){
+  if(!adminToken){ alert('Kayıt yapmak için önce yönetici girişi yapmalısın.'); return false; }
+  banner = {type:'saving', text:'Kaydediliyor…'};
+  render();
+  const apiUrl = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE_PATH}`;
+  try{
+    let sha = await fetchCurrentSha(apiUrl);
+
+    async function attemptPut(currentSha){
+      const body = {
+        message: 'Puan durumu güncellendi',
+        content: b64EncodeUnicode(JSON.stringify(state, null, 2)),
+        branch: BRANCH
+      };
+      if(currentSha) body.sha = currentSha;
+      return fetch(apiUrl, {
+        method:'PUT',
+        headers:{
+          Authorization:`Bearer ${adminToken}`,
+          Accept:'application/vnd.github+json',
+          'Content-Type':'application/json'
+        },
+        body: JSON.stringify(body)
+      });
+    }
+
+    let putRes = await attemptPut(sha);
+
+    if(putRes.status === 409 || putRes.status === 422){
+      sha = await fetchCurrentSha(apiUrl);
+      putRes = await attemptPut(sha);
+    }
+
+    if(!putRes.ok){
+      const errJson = await putRes.json().catch(()=>({}));
+      throw new Error((errJson.message || ('Yazma hatası ' + putRes.status)));
+    }
+    dataMissing = false;
+    banner = null;
+    render();
+    return true;
+  }catch(e){
+    console.error(e);
+    banner = {type:'error', text:'Kaydedilemedi: ' + e.message};
+    render();
+    return false;
+  }
 }
-​async function saveData(){
-if(!adminToken){ alert('Kayıt yapmak için önce yönetici girişi yapmalısın.'); return false; }
-banner = {type:'saving', text:'Kaydediliyor…'};
-render();
-const apiUrl = https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE_PATH};
-try{
-let sha = await fetchCurrentSha(apiUrl);
-​async function attemptPut(currentSha){
-const body = {
-message: 'Puan durumu ve fikstür güncellendi',
-content: b64EncodeUnicode(JSON.stringify(state, null, 2)),
-branch: BRANCH
-};
-if(currentSha) body.sha = currentSha;
-return fetch(apiUrl, {
-method:'PUT',
-headers:{
-Authorization:Bearer ${adminToken},
-Accept:'application/vnd.github+json',
-'Content-Type':'application/json'
-},
-body: JSON.stringify(body)
-});
-}
-​let putRes = await attemptPut(sha);
-​if(putRes.status === 409 || putRes.status === 422){
-sha = await fetchCurrentSha(apiUrl);
-putRes = await attemptPut(sha);
-}
-​if(!putRes.ok){
-const errJson = await putRes.json().catch(()=>({}));
-throw new Error((errJson.message || ('Yazma hatası ' + putRes.status)));
-}
-dataMissing = false;
-banner = null;
-render();
-return true;
-}catch(e){
-console.error(e);
-banner = {type:'error', text:'Kaydedilemedi: ' + e.message + ' — token izinlerini ve repo/branch adını kontrol et.'};
-render();
-return false;
-}
-}
-​/* ---------- puan durumu hesaplama ---------- */
+
+/* ---------- Puan Durumu Hesaplama ---------- */
 function computeStandings(){
-const table = {};
-state.teams.forEach(t=>{ table[t.id] = {id:t.id,name:t.name,logo:t.logo||'',O:0,G:0,B:0,M:0,AG:0,YG:0,formList:[]}; });
-​// Maçları hem genel geçmişten hem de fikstürden derle
-const allMatches = [];
-if(state.matches) allMatches.push(...state.matches);
-if(state.fixture){
-state.fixture.forEach(hafta=>{
-if(hafta.matches){
-hafta.matches.forEach(m=>{
-if(m.homeScore !== '' && m.awayScore !== '' && m.homeScore !== null && m.awayScore !== null && !isNaN(m.homeScore) && !isNaN(m.awayScore)){
-allMatches.push({homeId: m.homeId, awayId: m.awayId, homeScore: Number(m.homeScore), awayScore: Number(m.awayScore), ts: m.ts || 0});
+  const table = {};
+  state.teams.forEach(t=>{ table[t.id] = {id:t.id,name:t.name,logo:t.logo||'',O:0,G:0,B:0,M:0,AG:0,YG:0,formList:[]}; });
+  const sorted = [...state.matches].sort((a,b)=>a.ts-b.ts);
+  sorted.forEach(m=>{
+    const h = table[m.homeId], a = table[m.awayId];
+    if(!h || !a) return;
+    h.O++; a.O++;
+    h.AG += m.homeScore; h.YG += m.awayScore;
+    a.AG += m.awayScore; a.YG += m.homeScore;
+    if(m.homeScore > m.awayScore){ h.G++; a.M++; h.formList.push('w'); a.formList.push('l'); }
+    else if(m.homeScore < m.awayScore){ a.G++; h.M++; a.formList.push('w'); h.formList.push('l'); }
+    else { h.B++; a.B++; h.formList.push('d'); a.formList.push('d'); }
+  });
+  const rows = Object.values(table).map(r=>({...r, AV:r.AG-r.YG, P:r.G*3+r.B, form:r.formList.slice(-5)}));
+  rows.sort((a,b)=> b.P-a.P || b.AV-a.AV || b.AG-a.AG || a.name.localeCompare(b.name,'tr'));
+  return rows;
 }
-});
-}
-});
-}
-​const sorted = allMatches.sort((a,b)=>(a.ts||0)-(b.ts||0));
-sorted.forEach(m=>{
-const h = table[m.homeId], a = table[m.awayId];
-if(!h || !a) return;
-h.O++; a.O++;
-h.AG += m.homeScore; h.YG += m.awayScore;
-a.AG += m.awayScore; a.YG += m.homeScore;
-if(m.homeScore > m.awayScore){ h.G++; a.M++; h.formList.push('w'); a.formList.push('l'); }
-else if(m.homeScore < m.awayScore){ a.G++; h.M++; a.formList.push('w'); h.formList.push('l'); }
-else { h.B++; a.B++; h.formList.push('d'); a.formList.push('d'); }
-});
-const rows = Object.values(table).map(r=>({...r, AV:r.AG-r.YG, P:r.G*3+r.B, form:r.formList.slice(-5)}));
-rows.sort((a,b)=> b.P-a.P || b.AV-a.AV || b.AG-a.AG || a.name.localeCompare(b.name,'tr'));
-return rows;
-}
-​/* ---------- render ---------- */
+
+/* ---------- Render Arayüz ---------- */
 function render(){
-const app = document.getElementById('app');
-if(!dataReady){ app.innerHTML = '<div class="empty-note">Yükleniyor…</div>'; return; }
-​const bannerHtml = banner ? <div class="status-banner ${banner.type}">${banner.type==='saving' ? '⏳' : '⚠'} ${esc(banner.text)}</div> : '';
-​if(!state){
-app.innerHTML = <div class="topbar"> <div class="brand"> <div class="brand-dot"></div> <div> <div class="brand-name">Turnuva</div> <div class="brand-sub">eFootball Turnuvası &middot; Puan Durumu & Fikstür</div> </div> </div> <div>${adminToken ? '' :<button class="btn btn-ghost" onclick="openLogin()">Yönetici Girişi</button>}</div> </div> ${bannerHtml} <div class="panel"> <div class="empty-note">${adminToken ? 'Turnuvayı oluşturmak için aşağıdaki formu doldur.' : 'Turnuva henüz oluşturulmadı. Yönetici kurulumu tamamladığında tablo burada görünecek.'}</div> ${adminToken ? renderInitialSetupForm() : ''} </div> <div class="footnote">Veriler GitHub üzerinde saklanıyor &middot; herkes aynı tabloyu görür</div> ;
-return;
+  const app = document.getElementById('app');
+  if(!dataReady){ app.innerHTML = '<div class="empty-note">Yükleniyor…</div>'; return; }
+
+  const bannerHtml = banner ? `<div class="status-banner ${banner.type}">${banner.type==='saving' ? '⏳' : '⚠'} ${esc(banner.text)}</div>` : '';
+
+  if(!state){
+    app.innerHTML = `
+      <div class="topbar">
+        <div class="brand">
+          <div class="brand-dot"></div>
+          <div>
+            <div class="brand-name">Turnuva</div>
+            <div class="brand-sub">eFootball Turnuvası &middot; Puan Durumu</div>
+          </div>
+        </div>
+        <div>${adminToken ? '' : `<button class="btn btn-ghost" onclick="openLogin()">Yönetici Girişi</button>`}</div>
+      </div>
+      ${bannerHtml}
+      <div class="panel">
+        <div class="empty-note">${adminToken ? 'Turnuvayı oluşturmak için aşağıdaki formu doldur.' : 'Turnuva henüz oluşturulmadı. Yönetici kurulumu tamamladığında tablo burada görünecek.'}</div>
+        ${adminToken ? renderInitialSetupForm() : ''}
+      </div>
+      <div class="footnote">Veriler GitHub üzerinde saklanıyor &middot; herkes aynı tabloyu görür</div>
+    `;
+    return;
+  }
+
+  const standings = computeStandings();
+  const leader = standings.length ? standings[0] : null;
+
+  app.innerHTML = `
+    <div class="topbar">
+      <div class="brand">
+        <div class="brand-dot"></div>
+        <div>
+          <div class="brand-name">${esc(state.name)}</div>
+          <div class="brand-sub">eFootball Turnuvası &middot; Puan Durumu</div>
+        </div>
+      </div>
+      <div>
+        ${adminToken
+          ? `<span class="admin-pill">● YÖNETİCİ MODU<button class="btn-icon" style="margin-left:8px;width:auto;height:auto;padding:0;border:none;background:none;color:inherit;font-size:13px;" onclick="logoutAdmin()" title="Çıkış">✕</button></span>`
+          : `<button class="btn btn-ghost" onclick="openLogin()">Yönetici Girişi</button>`
+        }
+      </div>
+    </div>
+
+    ${bannerHtml}
+
+    <div class="scoreboard">
+      <div class="scoreboard-grid">
+        <div class="sb-item">
+          <div class="sb-label">Lider</div>
+          <div class="sb-value accent">${leader ? esc(leader.name) : '—'}</div>
+        </div>
+        <div class="sb-item">
+          <div class="sb-label">Puan</div>
+          <div class="sb-value">${leader ? leader.P : '—'}</div>
+        </div>
+        <div class="sb-item">
+          <div class="sb-label">Takım / Maç</div>
+          <div class="sb-value small">${state.teams.length} takım &middot; ${state.matches.length} maç</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3 class="panel-title"><span class="bar"></span>Puan Durumu</h3>
+      ${renderTable(standings)}
+    </div>
+
+    ${adminToken ? renderAdminPanels() : ''}
+    ${adminToken ? renderMatchHistory() : ''}
+
+    <div class="footnote">Veriler GitHub üzerinde saklanıyor &middot; yönetici oturumu sayfa yenilendiğinde sona erer</div>
+  `;
 }
-​const standings = computeStandings();
-const leader = standings.length ? standings[0] : null;
-const totalMatchesCount = (state.fixture || []).reduce((acc, h) => acc + (h.matches ? h.matches.length : 0), 0) + (state.matches ? state.matches.length : 0);
-​app.innerHTML = <div class="topbar"> <div class="brand"> <div class="brand-dot"></div> <div> <div class="brand-name">${esc(state.name)}</div> <div class="brand-sub">eFootball Turnuvası &middot; Puan Durumu & Fikstür</div> </div> </div> <div> ${adminToken ?<span class="admin-pill">● YÖNETİCİ MODU<button class="btn-icon" style="margin-left:8px;width:auto;height:auto;padding:0;border:none;background:none;color:inherit;font-size:13px;" onclick="logoutAdmin()" title="Çıkış">✕</button></span>:<button class="btn btn-ghost" onclick="openLogin()">Yönetici Girişi</button>`
+
+function renderTable(standings){
+  if(standings.length === 0){
+    return `<div class="empty-note">Henüz takım eklenmedi.${adminToken ? '' : ' Yönetici takımları ekledikten sonra tablo burada görünecek.'}</div>`;
+  }
+  const rows = standings.map((r,i)=>{
+    const rank = i+1;
+    const avClass = r.AV > 0 ? 'av-pos' : (r.AV < 0 ? 'av-neg' : '');
+    const avText = r.AV > 0 ? '+'+r.AV : r.AV;
+    const formDots = r.form.map(f=>`<span class="form-dot ${f}"></span>`).join('') || '<span style="color:var(--text-faint);font-size:11px;">-</span>';
+    return `
+      <tr class="${rank===1 ? 'leader' : ''}">
+        <td><span class="rank ${rank<=2?'top':''}">${rank}</span></td>
+        <td class="left"><div class="team-cell">${teamBadge(r,22)}<span>${esc(r.name)}</span>${rank===1 && r.O>0 ? '<span class="crown">♛</span>' : ''}</div></td>
+        <td>${r.O}</td><td>${r.G}</td><td>${r.B}</td><td>${r.M}</td>
+        <td>${r.AG}</td><td>${r.YG}</td>
+        <td class="${avClass}">${avText}</td>
+        <td class="pts">${r.P}</td>
+        <td><div class="form-row">${formDots}</div></td>
+      </tr>`;
+  }).join('');
+
+  return `
+    <div style="overflow-x:auto;">
+    <table>
+      <thead><tr><th>#</th><th class="left">Takım</th><th>O</th><th>G</th><th>B</th><th>M</th><th>A</th><th>Y</th><th>AV</th><th>P</th><th>Form</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+    </div>`;
 }
-</div>
-</div>
-​${bannerHtml}
-​<div class="scoreboard">
-<div class="scoreboard-grid">
-<div class="sb-item">
-<div class="sb-label">Lider</div>
-<div class="sb-value accent">{leader ? esc(leader.name) : '—'}</div>
-</div>
-<div class="sb-item">
-<div class="sb-label">Puan</div>
-<div class="sb-value">{leader ? leader.P : '—'}</div>
-</div>
-<div class="sb-item">
-<div class="sb-label">Takım / Maç</div>
-<div class="sb-value small">${state.teams.length} takım · ${totalMatchesCount} maç</div>
-</div>
-</div>
-</div>
-​<div class="panel">
-<h3 class="panel-title"><span class="bar"></span>Puan Durumu</h3>
-${renderTable(standings)}
-</div>
-​<div class="panel">
-<h3 class="panel-title"><span class="bar"></span>Lig Fikstürü</h3>
-${renderFixtureView()}
-</div>
-​${adminToken ? renderAdminPanels() : ''}
-${adminToken ? renderMatchHistory() : ''}
-​<div class="footnote">Veriler GitHub üzerinde saklanıyor · yönetici oturumu sayfa yenilendiğinde sona erer</div>
-`;
+
+function renderAdminPanels(){
+  const teamOptions = state.teams.map(t=>`<option value="${t.id}">${esc(t.name)}</option>`).join('');
+  const teamChips = state.teams.length
+    ? state.teams.map(t=>`<div class="team-chip"><div class="team-cell">${teamBadge(t,26)}<span>${esc(t.name)}</span></div><button class="btn-icon" onclick="removeTeam('${t.id}')" title="Takımı sil">✕</button></div>`).join('')
+    : '<div class="empty-note">Henüz takım yok.</div>';
+
+  return `
+    <div class="panel">
+      <h3 class="panel-title"><span class="bar"></span>Yönetim</h3>
+      <div class="admin-grid">
+        <div>
+          <label>Yeni Takım Adı</label>
+          <input id="newTeamInput" type="text" placeholder="Örn. Galatasaray">
+          <label>Logo Dosyası Yükle (opsiyonel)</label>
+          <input id="newTeamLogoFile" type="file" accept="image/*">
+          <label style="margin-top:-6px;">veya Logo Linki</label>
+          <input id="newTeamLogo" type="text" placeholder="https://...">
+          <button class="btn btn-cyan" style="width:100%;" onclick="addTeam()">Takımı Ekle</button>
+          <div style="margin-top:12px;">${teamChips}</div>
+        </div>
+        <div>
+          <label>Maç Sonucu Gir</label>
+          <div class="score-row">
+            <select id="homeTeam">${teamOptions}</select>
+            <input id="homeScore" type="number" min="0" value="0">
+            <div class="vs-label">:</div>
+            <input id="awayScore" type="number" min="0" value="0">
+            <select id="awayTeam">${teamOptions}</select>
+          </div>
+          <button class="btn btn-cyan" style="width:100%;margin-top:14px;" onclick="addMatch()">Sonucu Kaydet</button>
+        </div>
+      </div>
+    </div>`;
 }
-​function renderTable(standings){
-if(standings.length === 0){
-return <div class="empty-note">Henüz takım eklenmedi.${adminToken ? '' : ' Yönetici takımları ekledikten sonra tablo burada görünecek.'}</div>;
+
+function renderMatchHistory(){
+  const sorted = [...state.matches].sort((a,b)=>b.ts-a.ts);
+  const items = sorted.length ? sorted.map(m=>{
+    const home = state.teams.find(t=>t.id===m.homeId);
+    const away = state.teams.find(t=>t.id===m.awayId);
+    const d = new Date(m.ts);
+    const dateStr = d.toLocaleDateString('tr-TR',{day:'2-digit',month:'2-digit'});
+    return `
+      <div class="match-item">
+        <span class="teams">${home?esc(home.name):'(silinmiş)'} vs ${away?esc(away.name):'(silinmiş)'}</span>
+        <span style="display:flex;align-items:center;">
+          <span class="match-date">${dateStr}</span>
+          <span class="score">${m.homeScore} - ${m.awayScore}</span>
+          <button class="btn-icon" onclick="removeMatch('${m.id}')" title="Maçı sil">✕</button>
+        </span>
+      </div>`;
+  }).join('') : '<div class="empty-note">Henüz maç kaydı yok.</div>';
+
+  return `<div class="panel"><h3 class="panel-title"><span class="bar"></span>Maç Geçmişi</h3>${items}</div>`;
 }
-const rows = standings.map((r,i)=>{
-const rank = i+1;
-const avClass = r.AV > 0 ? 'av-pos' : (r.AV < 0 ? 'av-neg' : '');
-const avText = r.AV > 0 ? '+'+r.AV : r.AV;
-const formDots = r.form.map(f=><span class="form-dot ${f}"></span>).join('') || '<span style="color:var(--text-faint);font-size:11px;">-</span>';
-return  <tr class="${rank===1 ? 'leader' : ''}"> <td><span class="rank ${rank<=2?'top':''}">${rank}</span></td> <td class="left"><div class="team-cell">${teamBadge(r,22)}<span>${esc(r.name)}</span>${rank===1 && r.O>0 ? '<span class="crown">♛</span>' : ''}</div></td> <td>${r.O}</td><td>${r.G}</td><td>${r.B}</td><td>${r.M}</td> <td>${r.AG}</td><td>${r.YG}</td> <td class="${avClass}">${avText}</td> <td class="pts">${r.P}</td> <td><div class="form-row">${formDots}</div></td> </tr>;
-}).join('');
-​return  <div style="overflow-x:auto;"> <table> <thead><tr><th>#</th><th class="left">Takım</th><th>O</th><th>G</th><th>B</th><th>M</th><th>A</th><th>Y</th><th>AV</th><th>P</th><th>Form</th></tr></thead> <tbody>${rows}</tbody> </table> </div>;
+
+function renderInitialSetupForm(){
+  return `
+    <div style="max-width:420px;margin:16px auto 0;">
+      <label>Turnuva Adı</label>
+      <input id="setupName" type="text" placeholder="Örn. eFootball Süper Lig" value="eFootball Süper Lig">
+      <div class="modal-error" id="setupError"></div>
+      <button class="btn btn-cyan" style="width:100%;" onclick="submitInitialSetup()">Turnuvayı Oluştur</button>
+    </div>`;
 }
-​function renderFixtureView(){
-if(!state.fixture || state.fixture.length === 0){
-return <div class="empty-note">Henüz fikstür oluşturulmadı. ${adminToken ? 'Aşağıdaki Yönetim panelinden takımları ekleyip "Fikstür Oluştur" butonuna basabilirsin.' : 'Yönetici fikstürü oluşturduğunda burada görünecek.'}</div>;
+
+async function submitInitialSetup(){
+  const name = document.getElementById('setupName').value.trim();
+  const err = document.getElementById('setupError');
+  if(!name){ err.textContent = 'Lütfen bir turnuva adı girin.'; return; }
+  state = { name, teams:[], matches:[] };
+  const ok = await saveData();
+  if(ok) render();
 }
-​return state.fixture.map((hafta, hIdx)=>{
-const maclarHtml = hafta.matches.map((m, mIdx)=>{
-const homeTeam = state.teams.find(t=>t.id=m.homeId);
-const awayTeam = state.teams.find(t=>t.id=m.awayId);
-if(!homeTeam || !awayTeam) return '';
-​if(adminToken){
-return  <div class="mac-satir"> <div class="team-home"><div class="team-cell" style="justify-content:flex-end;"><span>${esc(homeTeam.name)}</span>${teamBadge(homeTeam,20)}</div></div> <input type="number" min="0" value="${m.homeScore !== null && m.homeScore !== undefined ? m.homeScore : ''}" placeholder="-" id="fix_h_${hIdx}_${mIdx}" onchange="updateFixtureScore(${hIdx}, ${mIdx})"> <span style="text-align:center;color:var(--text-faint);">-</span> <input type="number" min="0" value="${m.awayScore !== null && m.awayScore !== undefined ? m.awayScore : ''}" placeholder="-" id="fix_a_${hIdx}_${mIdx}" onchange="updateFixtureScore(${hIdx}, ${mIdx})"> <div class="team-away"><div class="team-cell">${teamBadge(awayTeam,20)}<span>${esc(awayTeam.name)}</span></div></div> </div>;
-} else {
-const hasScore = (m.homeScore !== '' && m.homeScore !== null && m.awayScore !== '' && m.awayScore !== null && !isNaN(m.homeScore) && !isNaN(m.awayScore));
-const scoreText = hasScore ? ${m.homeScore} - ${m.awayScore} : 'VS';
-return  <div class="mac-satir-view"> <div style="display:flex;align-items:center;gap:8px;flex:1;justify-content:flex-end;"> <span style="font-weight:600;">${esc(homeTeam.name)}</span> ${teamBadge(homeTeam,22)} </div> <span class="score-badge">${scoreText}</span> <div style="display:flex;align-items:center;gap:8px;flex:1;justify-content:flex-start;"> ${teamBadge(awayTeam,22)} <span style="font-weight:600;">${esc(awayTeam.name)}</span> </div> </div>;
-}
-}).join('');
-​return  <div class="hafta-box"> <div class="hafta-baslik"><span>${hafta.name || (hIdx+1) + '. Hafta'}</span></div> <div>${maclarHtml}</div> </div>;
-}).join('');
-}
-​function renderAdminPanels(){
-const teamOptions = state.teams.map(t=><option value="${t.id}">${esc(t.name)}</option>).join('');
-const teamChips = state.teams.length
-? state.teams.map(t=><div class="team-chip"><div class="team-cell">${teamBadge(t,26)}<span>${esc(t.name)}</span></div><button class="btn-icon" onclick="removeTeam('${t.id}')" title="Takımı sil">✕</button></div>).join('')
-: '<div class="empty-note">Henüz takım yok.</div>';
-​return `
-<div class="panel">
-<h3 class="panel-title"><span class="bar"></span>Yönetim ve Fikstür Üretici</h3>
-<div class="admin-grid">
-<div>
-<label>Yeni Takım Adı</label>
-<input id="newTeamInput" type="text" placeholder="Örn. Galatasaray">
-<label>Logo Dosyası Yükle (opsiyonel, max 1MB)</label>
-<input id="newTeamLogoFile" type="file" accept="image/*">
-<label style="margin-top:-6px;">veya Logo Linki</label>
-<input id="newTeamLogo" type="text" placeholder="https://... (dosya seçtiysen bu alanı boş bırak)" onkeydown="if(event.key==='Enter')addTeam()">
-<button class="btn btn-cyan" style="width:100%;margin-bottom:12px;" onclick="addTeam()">Takımı Ekle</button>
-​<button class="btn btn-cyan" style="width:100%;background:linear-gradient(135deg,#27ae60,#2ecc71);color:#fff;" onclick="generateFixturePrompt()">🎲 Otomatik Fikstür Oluştur (Çift Devreli)</button>
-​<div style="margin-top:16px;">{teamChips}</div>
-</div>
-<div>
-<label>Ek Maç / Sonuç Girişi</label>
-<div class="score-row">
-<select id="homeTeam">{teamOptions}</select>
-<input id="homeScore" type="number" min="0" value="0">
-<div class="vs-label">:</div>
-<input id="awayScore" type="number" min="0" value="0">
-<select id="awayTeam">${teamOptions}</select>
-</div>
-<button class="btn btn-cyan" style="width:100%;margin-top:14px;" onclick="addMatch()">Maçı Kaydet</button>
-</div>
-</div>
-</div>`;
-}
-​function renderMatchHistory(){
-if(!state.matches || state.matches.length === 0) return '';
-const sorted = [...state.matches].sort((a,b)=>b.ts-a.ts);
-const items = sorted.map(m=>{
-const home = state.teams.find(t=>t.id=m.homeId);
-const away = state.teams.find(t=>t.id=m.awayId);
-const d = new Date(m.ts);
-const dateStr = d.toLocaleDateString('tr-TR',{day:'2-digit',month:'2-digit'});
-return  <div class="match-item" style="display:flex;justify-content:space-between;align-items:center;padding:10px 4px;border-bottom:1px solid rgba(29,67,81,0.5);font-size:14px;"> <span class="teams">${home?esc(home.name):'(silinmiş)'} vs ${away?esc(away.name):'(silinmiş)'}</span> <span style="display:flex;align-items:center;"> <span class="match-date" style="font-size:11px;color:var(--text-faint);margin-right:8px;">${dateStr}</span> <span class="score" style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--cyan);background:var(--cyan-soft);padding:3px 10px;border-radius:6px;margin:0 10px;">${m.homeScore} - ${m.awayScore}</span> <button class="btn-icon" onclick="removeMatch('${m.id}')" title="Maçı sil">✕</button> </span> </div>;
-}).join('');
-​return <div class="panel"><h3 class="panel-title"><span class="bar"></span>Ekstra Maç Geçmişi</h3>${items}</div>;
-}
-​function renderInitialSetupForm(){
-return  <div style="max-width:420px;margin:16px auto 0;"> <label>Turnuva Adı</label> <input id="setupName" type="text" placeholder="Örn. Arkadaşlar Ligi 2026" value="eFootball Süper Lig"> <div class="modal-error" id="setupError"></div> <button class="btn btn-cyan" style="width:100%;" onclick="submitInitialSetup()">Turnuvayı Oluştur</button> </div>;
-}
-​async function submitInitialSetup(){
-const name = document.getElementById('setupName').value.trim();
-const err = document.getElementById('setupError');
-if(!name){ err.textContent = 'Lütfen bir turnuva adı girin.'; return; }
-state = { name, teams:[], matches:[], fixture:[] };
-const ok = await saveData();
-if(ok) render();
-}
-​/* ---------- yönetici girişi ---------- */
+
+/* ---------- Yönetici Girişi ---------- */
 function openLogin(){
-const overlay = document.createElement('div');
-overlay.className = 'modal-overlay';
-overlay.id = 'loginOverlay';
-overlay.innerHTML =  <div class="modal"> <h2>Yönetici Girişi</h2> <p>Puan tablosunu ve fikstürü düzenlemek için GitHub'da oluşturduğun <strong>fine-grained personal access token</strong>'ı yapıştır. Bu token sadece bu tarayıcı oturumunda tutulur, hiçbir yere kaydedilmez.</p> <label>GitHub Token</label> <input id="loginToken" type="password" placeholder="github_pat_..." onkeydown="if(event.key==='Enter')submitLogin()"> <div class="modal-error" id="loginError"></div> <div class="modal-actions"> <button class="btn btn-ghost" onclick="closeLogin()">Vazgeç</button> <button class="btn btn-cyan" id="loginBtn" onclick="submitLogin()">Giriş Yap</button> </div> </div>;
-document.body.appendChild(overlay);
-setTimeout(()=>document.getElementById('loginToken').focus(),50);
+  const overlay = document.createElement('div');
+  overlay.className = 'modal-overlay';
+  overlay.id = 'loginOverlay';
+  overlay.innerHTML = `
+    <div class="modal">
+      <h2>Yönetici Girişi</h2>
+      <p>Puan tablosunu düzenlemek için GitHub token'ını yapıştır.</p>
+      <label>GitHub Token</label>
+      <input id="loginToken" type="password" placeholder="github_pat_..." onkeydown="if(event.key==='Enter')submitLogin()">
+      <div class="modal-error" id="loginError"></div>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" onclick="closeLogin()">Vazgeç</button>
+        <button class="btn btn-cyan" id="loginBtn" onclick="submitLogin()">Giriş Yap</button>
+      </div>
+    </div>`;
+  document.body.appendChild(overlay);
+  setTimeout(()=>document.getElementById('loginToken').focus(),50);
 }
 function closeLogin(){ const o = document.getElementById('loginOverlay'); if(o) o.remove(); }
-​async function submitLogin(){
-const val = document.getElementById('loginToken').value.trim();
-const err = document.getElementById('loginError');
-const btn = document.getElementById('loginBtn');
-if(!val){ err.textContent = 'Lütfen token gir.'; return; }
-btn.disabled = true; btn.textContent = 'Kontrol ediliyor…';
-try{
-const res = await fetch(https://api.github.com/repos/${OWNER}/${REPO}, {
-headers:{ Authorization:Bearer ${val}, Accept:'application/vnd.github+json' }
-});
-if(!res.ok){ throw new Error('Token geçersiz veya repoya erişimi yok (' + res.status + ')'); }
-adminToken = val;
-closeLogin();
-render();
-}catch(e){
-err.textContent = e.message;
-btn.disabled = false; btn.textContent = 'Giriş Yap';
-}
+
+async function submitLogin(){
+  const val = document.getElementById('loginToken').value.trim();
+  const err = document.getElementById('loginError');
+  const btn = document.getElementById('loginBtn');
+  if(!val){ err.textContent = 'Lütfen token gir.'; return; }
+  btn.disabled = true; btn.textContent = 'Kontrol ediliyor…';
+  try{
+    const res = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}`, {
+      headers:{ Authorization:`Bearer ${val}`, Accept:'application/vnd.github+json' }
+    });
+    if(!res.ok){ throw new Error('Token geçersiz veya repoya erişimi yok (' + res.status + ')'); }
+    adminToken = val;
+    closeLogin();
+    render();
+  }catch(e){
+    err.textContent = e.message;
+    btn.disabled = false; btn.textContent = 'Giriş Yap';
+  }
 }
 function logoutAdmin(){ adminToken = null; render(); }
-​function fileToBase64(file){
-return new Promise((resolve, reject)=>{
-const reader = new FileReader();
-reader.onload = () => resolve(reader.result.split(',')[1]);
-reader.onerror = () => reject(new Error('Dosya okunamadı'));
-reader.readAsDataURL(file);
-});
+
+function fileToBase64(file){
+  return new Promise((resolve, reject)=>{
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = () => reject(new Error('Dosya okunamadı'));
+    reader.readAsDataURL(file);
+  });
 }
-​async function uploadTeamLogo(file, teamId){
-const rawExt = (file.name.split('.').pop() || 'png').toLowerCase().replace(/[^a-z0-9]/g,'');
-const ext = rawExt || 'png';
-const path = logos/${teamId}.${ext};
-const base64 = await fileToBase64(file);
-const apiUrl = https://api.github.com/repos/${OWNER}/${REPO}/contents/${path};
-const body = { message: 'Takım logosu yüklendi', content: base64, branch: BRANCH };
-​let res = await fetch(apiUrl, {
-method:'PUT',
-headers:{ Authorization:Bearer ${adminToken}, Accept:'application/vnd.github+json', 'Content-Type':'application/json' },
-body: JSON.stringify(body)
-});
-​if(res.status === 422 || res.status === 409){
-const shaRes = await fetch(${apiUrl}?ref=${BRANCH}&_=${Date.now()}, {
-cache:'no-store',
-headers:{ Authorization:Bearer ${adminToken}, Accept:'application/vnd.github+json' }
-});
-if(shaRes.ok){
-const j = await shaRes.json();
-body.sha = j.sha;
-res = await fetch(apiUrl, {
-method:'PUT',
-headers:{ Authorization:Bearer ${adminToken}, Accept:'application/vnd.github+json', 'Content-Type':'application/json' },
-body: JSON.stringify(body)
-});
+
+async function uploadTeamLogo(file, teamId){
+  const rawExt = (file.name.split('.').pop() || 'png').toLowerCase().replace(/[^a-z0-9]/g,'');
+  const ext = rawExt || 'png';
+  const path = `logos/${teamId}.${ext}`;
+  const base64 = await fileToBase64(file);
+  const apiUrl = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${path}`;
+  const body = { message: 'Takım logosu yüklendi', content: base64, branch: BRANCH };
+
+  let res = await fetch(apiUrl, {
+    method:'PUT',
+    headers:{ Authorization:`Bearer ${adminToken}`, Accept:'application/vnd.github+json', 'Content-Type':'application/json' },
+    body: JSON.stringify(body)
+  });
+
+  if(res.status === 422 || res.status === 409){
+    const shaRes = await fetch(`${apiUrl}?ref=${BRANCH}&_=${Date.now()}`, {
+      cache:'no-store',
+      headers:{ Authorization:`Bearer ${adminToken}`, Accept:'application/vnd.github+json' }
+    });
+    if(shaRes.ok){
+      const j = await shaRes.json();
+      body.sha = j.sha;
+      res = await fetch(apiUrl, {
+        method:'PUT',
+        headers:{ Authorization:`Bearer ${adminToken}`, Accept:'application/vnd.github+json', 'Content-Type':'application/json' },
+        body: JSON.stringify(body)
+      });
+    }
+  }
+
+  if(!res.ok){
+    const errJson = await res.json().catch(()=>({}));
+    throw new Error(errJson.message || ('Logo yükleme hatası ' + res.status));
+  }
+  return `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/${path}?v=${Date.now()}`;
 }
-}
-​if(!res.ok){
-const errJson = await res.json().catch(()=>({}));
-throw new Error(errJson.message || ('Logo yükleme hatası ' + res.status));
-}
-return https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/${path}?v=${Date.now()};
-}
-​/* ---------- takım & maç & fikstür işlemleri ---------- */
+
 async function addTeam(){
-const input = document.getElementById('newTeamInput');
-const logoInput = document.getElementById('newTeamLogo');
-const fileInput = document.getElementById('newTeamLogoFile');
-const name = input.value.trim();
-if(!name) return;
-if(state.teams.some(t=>t.name.toLowerCase()===name.toLowerCase())){ alert('Bu isimde bir takım zaten var.'); return; }
-​const id = uid();
-let logo = logoInput.value.trim();
-const file = fileInput.files[0];
-​if(file){
-if(file.size > 1024*1024){ alert("Logo dosyası 1MB'dan küçük olmalı."); return; }
-banner = {type:'saving', text:'Logo yükleniyor…'};
-render();
-try{
-logo = await uploadTeamLogo(file, id);
-}catch(e){
-banner = {type:'error', text:'Logo yüklenemedi: ' + e.message};
-render();
-return;
+  const input = document.getElementById('newTeamInput');
+  const logoInput = document.getElementById('newTeamLogo');
+  const fileInput = document.getElementById('newTeamLogoFile');
+  const name = input.value.trim();
+  if(!name) return;
+  if(state.teams.some(t=>t.name.toLowerCase()===name.toLowerCase())){ alert('Bu isimde bir takım zaten var.'); return; }
+
+  const id = uid();
+  let logo = logoInput.value.trim();
+  const file = fileInput.files[0];
+
+  if(file){
+    if(file.size > 1024*1024){ alert("Logo dosyası 1MB'dan küçük olmalı."); return; }
+    banner = {type:'saving', text:'Logo yükleniyor…'};
+    render();
+    try{
+      logo = await uploadTeamLogo(file, id);
+    }catch(e){
+      banner = {type:'error', text:'Logo yüklenemedi: ' + e.message};
+      render();
+      return;
+    }
+  }
+
+  const prev = JSON.parse(JSON.stringify(state));
+  state.teams.push({id, name, logo});
+  const ok = await saveData();
+  if(!ok) state = prev;
+  render();
 }
+
+async function removeTeam(id){
+  const hasMatches = state.matches.some(m=>m.homeId===id || m.awayId===id);
+  if(hasMatches){ alert('Bu takımın maçları var. Önce maç geçmişinden ilgili maçları sil.'); return; }
+  const prev = JSON.parse(JSON.stringify(state));
+  state.teams = state.teams.filter(t=>t.id!==id);
+  const ok = await saveData();
+  if(!ok) state = prev;
+  render();
 }
-​const prev = JSON.parse(JSON.stringify(state));
-state.teams.push({id, name, logo});
-const ok = await saveData();
-if(!ok) state = prev;
-render();
+
+async function addMatch(){
+  const homeId = document.getElementById('homeTeam').value;
+  const awayId = document.getElementById('awayTeam').value;
+  const homeScore = parseInt(document.getElementById('homeScore').value,10);
+  const awayScore = parseInt(document.getElementById('awayScore').value,10);
+  if(!homeId || !awayId){ alert('Lütfen takımları seçin.'); return; }
+  if(homeId === awayId){ alert('Bir takım kendisiyle oynayamaz.'); return; }
+  if(isNaN(homeScore) || isNaN(awayScore) || homeScore<0 || awayScore<0){ alert('Geçerli bir skor gir.'); return; }
+  const prev = JSON.parse(JSON.stringify(state));
+  state.matches.push({id:uid(), homeId, awayId, homeScore, awayScore, ts:Date.now()});
+  const ok = await saveData();
+  if(!ok) state = prev;
+  render();
 }
-​async function removeTeam(id){
-const hasMatches = (state.matches && state.matches.length > 0) || (state.fixture && state.fixture.some(h=>h.matches.some(m=>m.homeId=id || m.awayId=id)));
-if(hasMatches){ alert('Bu takımın kayıtlı maçları veya fikstürde maçları var. Önce fikstürü sıfırlayın veya maçları kaldırın.'); return; }
-const prev = JSON.parse(JSON.stringify(state));
-state.teams = state.teams.filter(t=>t.id!==id);
-const ok = await saveData();
-if(!ok) state = prev;
-render();
+
+async function removeMatch(id){
+  const prev = JSON.parse(JSON.stringify(state));
+  state.matches = state.matches.filter(m=>m.id!==id);
+  const ok = await saveData();
+  if(!ok) state = prev;
+  render();
 }
-​// Round-Robin Algoritması ile Fikstür Üretici (Süper Lig usulü - çift devreli iç/dış saha)
-async function generateFixturePrompt(){
-if(state.teams.length < 2){ alert('Fikstür oluşturmak için en az 2 takım olmalı.'); return; }
-if(state.fixture && state.fixture.length > 0){
-if(!confirm('Mevcut fikstür ve girilen skorlar sıfırlanacak. Yeni fikstür oluşturulsun mu?')) return;
-}
-​let teamIds = state.teams.map(t=>t.id);
-if(teamIds.length % 2 !== 0){
-teamIds.push('BAY');
-}
-const n = teamIds.length;
-let haftalar = [];
-​// İlk yarı
-let currentTeams = [...teamIds];
-for(let i = 0; i < n - 1; i++){
-let haftaMaclari = [];
-for(let j = 0; j < n / 2; j++){
-let home = currentTeams[j];
-let away = currentTeams[n - 1 - j];
-if(home !== 'BAY' && away !== 'BAY'){
-haftaMaclari.push({homeId: home, awayId: away, homeScore: '', awayScore: '', ts: Date.now()});
-}
-}
-if(haftaMaclari.length > 0){
-haftalar.push({name: (haftalar.length + 1) + '. Hafta', matches: haftaMaclari});
-}
-// Döndür (ilk eleman sabit)
-currentTeams.splice(1, 0, currentTeams.pop());
-}
-​// İkinci yarı (rövanşlar)
-let ikinciYari = [];
-haftalar.forEach((hafta, idx)=>{
-let rovansMaclari = hafta.matches.map(m=>({
-homeId: m.awayId,
-awayId: m.homeId,
-homeScore: '',
-awayScore: '',
-ts: Date.now()
-}));
-ikinciYari.push({name: (haftalar.length + idx + 1) + '. Hafta', matches: rovansMaclari});
-});
-​state.fixture = [...haftalar, ...ikinciYari];
-const prev = JSON.parse(JSON.stringify(state));
-const ok = await saveData();
-if(!ok) state = prev;
-else alert('Fikstür başarıyla oluşturuldu ve herkes için yayına alındı!');
-render();
-}
-​async function updateFixtureScore(hIdx, mIdx){
-const hInput = document.getElementById(fix_h_${hIdx}_${mIdx});
-const aInput = document.getElementById(fix_a_${hIdx}_${mIdx});
-if(!hInput || !aInput) return;
-​const hVal = hInput.value.trim();
-const aVal = aInput.value.trim();
-​state.fixture[hIdx].matches[mIdx].homeScore = hVal === '' ? '' : Number(hVal);
-state.fixture[hIdx].matches[mIdx].awayScore = aVal === '' ? '' : Number(aVal);
-state.fixture[hIdx].matches[mIdx].ts = Date.now();
-​const prev = JSON.parse(JSON.stringify(state));
-const ok = await saveData();
-if(!ok) state = prev;
-render();
-}
-​async function addMatch(){
-const homeId = document.getElementById('homeTeam').value;
-const awayId = document.getElementById('awayTeam').value;
-const homeScore = parseInt(document.getElementById('homeScore').value,10);
-const awayScore = parseInt(document.getElementById('awayScore').value,10);
-if(!homeId || !awayId){ alert('Lütfen takımları seçin.'); return; }
-if(homeId === awayId){ alert('Bir takım kendisiyle eşleşemez.'); return; }
-if(isNaN(homeScore) || isNaN(awayScore) || homeScore<0 || awayScore<0){ alert('Lütfen geçerli bir skor girin.'); return; }
-​if(!state.matches) state.matches = [];
-const prev = JSON.parse(JSON.stringify(state));
-state.matches.push({id:uid(), homeId, awayId, homeScore, awayScore, ts:Date.now()});
-const ok = await saveData();
-if(!ok) state = prev;
-render();
-}
-​async function removeMatch(id){
-const prev = JSON.parse(JSON.stringify(state));
-state.matches = state.matches.filter(m=>m.id!==id);
-const ok = await saveData();
-if(!ok) state = prev;
-render();
-}
-​/* ---------- başlat ---------- */
+
 loadData();
 setInterval(()=>{ if(!adminToken) loadData(true); }, 20000);
 </script>
