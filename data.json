@@ -30,6 +30,21 @@
       "id": "0rmpeht3",
       "name": "Cumhuriyet FK",
       "logo": "https://raw.githubusercontent.com/flexys1903/efootball-turnuva/main/logos/0rmpeht3.jpg?v=1794224716403"
+    },
+    {
+      "id": "pvzq3vjr",
+      "name": "Boğa FC",
+      "logo": ""
+    },
+    {
+      "id": "q1et99ur",
+      "name": "Palmerik FC",
+      "logo": ""
+    },
+    {
+      "id": "2kijuccs",
+      "name": "Aydemir58",
+      "logo": ""
     }
   ],
   "matches": [
@@ -143,23 +158,23 @@
       "week": 1,
       "matches": [
         {
-          "id": "cb8l8km9",
-          "homeId": "873i0ltx",
-          "awayId": "c4u72qwp",
-          "homeScore": null,
-          "awayScore": null
-        },
-        {
-          "id": "ib6z0hrs",
+          "id": "b2vdykrv",
           "homeId": "7pxpy0xn",
-          "awayId": "s4zc899s",
-          "homeScore": null,
-          "awayScore": null
+          "awayId": "pvzq3vjr",
+          "homeScore": 5,
+          "awayScore": 1
         },
         {
-          "id": "g3myb9zp",
-          "homeId": "0rmpeht3",
-          "awayId": "fxhypl7c",
+          "id": "agrfes8q",
+          "homeId": "q1et99ur",
+          "awayId": "873i0ltx",
+          "homeScore": 5,
+          "awayScore": 2
+        },
+        {
+          "id": "tnlifluw",
+          "homeId": "2kijuccs",
+          "awayId": "0rmpeht3",
           "homeScore": null,
           "awayScore": null
         }
@@ -169,23 +184,23 @@
       "week": 2,
       "matches": [
         {
-          "id": "p2eodnks",
-          "homeId": "s4zc899s",
-          "awayId": "873i0ltx",
+          "id": "yr2iuqpn",
+          "homeId": "pvzq3vjr",
+          "awayId": "q1et99ur",
           "homeScore": null,
           "awayScore": null
         },
         {
-          "id": "f7jgeo0s",
-          "homeId": "c4u72qwp",
-          "awayId": "fxhypl7c",
+          "id": "n9z1r6x0",
+          "homeId": "873i0ltx",
+          "awayId": "2kijuccs",
           "homeScore": null,
           "awayScore": null
         },
         {
-          "id": "2uc7j6ix",
-          "homeId": "7pxpy0xn",
-          "awayId": "0rmpeht3",
+          "id": "l35utjen",
+          "homeId": "0rmpeht3",
+          "awayId": "7pxpy0xn",
           "homeScore": null,
           "awayScore": null
         }
@@ -195,23 +210,23 @@
       "week": 3,
       "matches": [
         {
-          "id": "xdgpmrrn",
-          "homeId": "873i0ltx",
-          "awayId": "fxhypl7c",
+          "id": "m0i692i3",
+          "homeId": "7pxpy0xn",
+          "awayId": "2kijuccs",
           "homeScore": null,
           "awayScore": null
         },
         {
-          "id": "3mq4qgmq",
-          "homeId": "s4zc899s",
+          "id": "m64axc0s",
+          "homeId": "pvzq3vjr",
+          "awayId": "873i0ltx",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "4oomf3mc",
+          "homeId": "q1et99ur",
           "awayId": "0rmpeht3",
-          "homeScore": null,
-          "awayScore": null
-        },
-        {
-          "id": "tzko7zg8",
-          "homeId": "c4u72qwp",
-          "awayId": "7pxpy0xn",
           "homeScore": null,
           "awayScore": null
         }
@@ -221,23 +236,23 @@
       "week": 4,
       "matches": [
         {
-          "id": "z72i1saz",
-          "homeId": "0rmpeht3",
-          "awayId": "873i0ltx",
+          "id": "b36lk0bp",
+          "homeId": "2kijuccs",
+          "awayId": "q1et99ur",
           "homeScore": null,
           "awayScore": null
         },
         {
-          "id": "ivlhibtl",
-          "homeId": "fxhypl7c",
+          "id": "frs3ezt9",
+          "homeId": "873i0ltx",
           "awayId": "7pxpy0xn",
           "homeScore": null,
           "awayScore": null
         },
         {
-          "id": "ut1vjdn3",
-          "homeId": "s4zc899s",
-          "awayId": "c4u72qwp",
+          "id": "pk42iqfr",
+          "homeId": "0rmpeht3",
+          "awayId": "pvzq3vjr",
           "homeScore": null,
           "awayScore": null
         }
@@ -247,23 +262,23 @@
       "week": 5,
       "matches": [
         {
-          "id": "06w26v7e",
+          "id": "w5cgh6nh",
+          "homeId": "7pxpy0xn",
+          "awayId": "q1et99ur",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "vqblcs50",
+          "homeId": "pvzq3vjr",
+          "awayId": "2kijuccs",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "qta7ck05",
           "homeId": "873i0ltx",
-          "awayId": "7pxpy0xn",
-          "homeScore": null,
-          "awayScore": null
-        },
-        {
-          "id": "42mveug7",
-          "homeId": "0rmpeht3",
-          "awayId": "c4u72qwp",
-          "homeScore": null,
-          "awayScore": null
-        },
-        {
-          "id": "p04234uw",
-          "homeId": "fxhypl7c",
-          "awayId": "s4zc899s",
+          "awayId": "0rmpeht3",
           "homeScore": null,
           "awayScore": null
         }
@@ -273,23 +288,23 @@
       "week": 6,
       "matches": [
         {
-          "id": "r8b0zc7c",
-          "homeId": "c4u72qwp",
+          "id": "xwxhyhhm",
+          "homeId": "7pxpy0xn",
           "awayId": "873i0ltx",
           "homeScore": null,
           "awayScore": null
         },
         {
-          "id": "pm8grwg5",
-          "homeId": "s4zc899s",
-          "awayId": "7pxpy0xn",
+          "id": "he2in32l",
+          "homeId": "pvzq3vjr",
+          "awayId": "0rmpeht3",
           "homeScore": null,
           "awayScore": null
         },
         {
-          "id": "6pfgk2qz",
-          "homeId": "fxhypl7c",
-          "awayId": "0rmpeht3",
+          "id": "4jba0fg1",
+          "homeId": "q1et99ur",
+          "awayId": "2kijuccs",
           "homeScore": null,
           "awayScore": null
         }
@@ -299,23 +314,23 @@
       "week": 7,
       "matches": [
         {
-          "id": "4x2liili",
-          "homeId": "873i0ltx",
-          "awayId": "s4zc899s",
-          "homeScore": null,
-          "awayScore": null
-        },
-        {
-          "id": "6lklx9ml",
-          "homeId": "fxhypl7c",
-          "awayId": "c4u72qwp",
-          "homeScore": null,
-          "awayScore": null
-        },
-        {
-          "id": "5aghtxco",
-          "homeId": "0rmpeht3",
+          "id": "5o6wuh5v",
+          "homeId": "pvzq3vjr",
           "awayId": "7pxpy0xn",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "ismvfako",
+          "homeId": "873i0ltx",
+          "awayId": "q1et99ur",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "hbj2337w",
+          "homeId": "0rmpeht3",
+          "awayId": "2kijuccs",
           "homeScore": null,
           "awayScore": null
         }
@@ -325,23 +340,23 @@
       "week": 8,
       "matches": [
         {
-          "id": "936uktvj",
-          "homeId": "fxhypl7c",
+          "id": "67oydk9r",
+          "homeId": "q1et99ur",
+          "awayId": "pvzq3vjr",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "wv6hg6ya",
+          "homeId": "2kijuccs",
           "awayId": "873i0ltx",
           "homeScore": null,
           "awayScore": null
         },
         {
-          "id": "gdyphqfu",
-          "homeId": "0rmpeht3",
-          "awayId": "s4zc899s",
-          "homeScore": null,
-          "awayScore": null
-        },
-        {
-          "id": "prqo3jyh",
+          "id": "qg5gtpd6",
           "homeId": "7pxpy0xn",
-          "awayId": "c4u72qwp",
+          "awayId": "0rmpeht3",
           "homeScore": null,
           "awayScore": null
         }
@@ -351,23 +366,23 @@
       "week": 9,
       "matches": [
         {
-          "id": "4rj08l1y",
+          "id": "hbwc23n1",
+          "homeId": "2kijuccs",
+          "awayId": "7pxpy0xn",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "k0znbni9",
           "homeId": "873i0ltx",
-          "awayId": "0rmpeht3",
+          "awayId": "pvzq3vjr",
           "homeScore": null,
           "awayScore": null
         },
         {
-          "id": "dx1owmjf",
-          "homeId": "7pxpy0xn",
-          "awayId": "fxhypl7c",
-          "homeScore": null,
-          "awayScore": null
-        },
-        {
-          "id": "kcwag630",
-          "homeId": "c4u72qwp",
-          "awayId": "s4zc899s",
+          "id": "i3cv47ym",
+          "homeId": "0rmpeht3",
+          "awayId": "q1et99ur",
           "homeScore": null,
           "awayScore": null
         }
@@ -377,23 +392,75 @@
       "week": 10,
       "matches": [
         {
-          "id": "qu679hls",
+          "id": "sehgs8yx",
+          "homeId": "q1et99ur",
+          "awayId": "2kijuccs",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "m1n7e4fg",
           "homeId": "7pxpy0xn",
           "awayId": "873i0ltx",
           "homeScore": null,
           "awayScore": null
         },
         {
-          "id": "pb5rlx8t",
-          "homeId": "c4u72qwp",
+          "id": "s7m3n1ru",
+          "homeId": "pvzq3vjr",
           "awayId": "0rmpeht3",
+          "homeScore": null,
+          "awayScore": null
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "matches": [
+        {
+          "id": "on96cihg",
+          "homeId": "q1et99ur",
+          "awayId": "7pxpy0xn",
           "homeScore": null,
           "awayScore": null
         },
         {
-          "id": "xi9epaci",
-          "homeId": "s4zc899s",
-          "awayId": "fxhypl7c",
+          "id": "ccfmcsbq",
+          "homeId": "2kijuccs",
+          "awayId": "pvzq3vjr",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "rn4peowm",
+          "homeId": "0rmpeht3",
+          "awayId": "873i0ltx",
+          "homeScore": null,
+          "awayScore": null
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "matches": [
+        {
+          "id": "w4tn9qbv",
+          "homeId": "873i0ltx",
+          "awayId": "7pxpy0xn",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "3zrgqth2",
+          "homeId": "0rmpeht3",
+          "awayId": "pvzq3vjr",
+          "homeScore": null,
+          "awayScore": null
+        },
+        {
+          "id": "xc7uq1uq",
+          "homeId": "2kijuccs",
+          "awayId": "q1et99ur",
           "homeScore": null,
           "awayScore": null
         }
