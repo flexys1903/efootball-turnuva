@@ -213,8 +213,8 @@
           "id": "m0i692i3",
           "homeId": "7pxpy0xn",
           "awayId": "2kijuccs",
-          "homeScore": null,
-          "awayScore": null
+          "homeScore": 0,
+          "awayScore": 1
         },
         {
           "id": "m64axc0s",
