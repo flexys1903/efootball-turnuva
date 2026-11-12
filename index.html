@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>eFootball Turnuvası - Puan Durumu</title>
+<title>eFootball Turnuvası - Puan Durumu & Fikstür</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap');
 
@@ -114,6 +114,19 @@ input:focus,select:focus{border-color:var(--beige-dim);outline:none;}
 .team-chip{display:flex;justify-content:space-between;align-items:center;background:var(--bg-elevated);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin-bottom:8px;font-size:14px;font-weight:600;}
 .team-chip .team-cell{gap:10px;}
 
+/* Fikstür Stilleri */
+.week-block{margin-bottom:20px;background:var(--bg-elevated);border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+.week-header{background:var(--bg-elevated-2);padding:10px 16px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:15px;color:var(--beige);letter-spacing:0.8px;text-transform:uppercase;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;}
+.fixture-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid rgba(51,51,51,0.5);}
+.fixture-row:last-child{border-bottom:none;}
+.f-team{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;}
+.f-team.home{justify-content:flex-end;text-align:right;}
+.f-team.away{justify-content:flex-start;text-align:left;}
+.f-score-box{display:flex;align-items:center;gap:6px;justify-content:center;}
+.f-input{width:46px !important;margin:0 !important;padding:6px 4px !important;text-align:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;}
+.f-badge{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;padding:4px 12px;border-radius:6px;background:var(--beige-soft);color:var(--beige);min-width:68px;text-align:center;}
+.f-badge.pending{background:var(--bg-surface);color:var(--text-faint);border:1px solid var(--line);}
+
 .match-item{display:flex;justify-content:space-between;align-items:center;padding:10px 4px;border-bottom:1px solid rgba(51,51,51,0.5);font-size:14px;}
 .match-item .teams{font-weight:600;}
 .match-item .score{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--beige);background:var(--beige-soft);padding:3px 10px;border-radius:6px;margin:0 10px;}
@@ -123,7 +136,6 @@ input:focus,select:focus{border-color:var(--beige-dim);outline:none;}
 .modal{background:linear-gradient(180deg,var(--bg-surface),var(--bg-elevated));border:1px solid var(--line);border-radius:16px;padding:28px;max-width:420px;width:100%;box-shadow:0 0 40px rgba(223,204,164,0.08);}
 .modal h2{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:20px;text-transform:uppercase;letter-spacing:0.5px;margin:0 0 6px;color:var(--text);}
 .modal p{font-size:13px;color:var(--text-muted);margin:0 0 20px;line-height:1.5;}
-.modal p a{color:var(--beige);}
 .modal-error{color:var(--danger);font-size:12.5px;margin:-8px 0 12px;min-height:16px;}
 .modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:6px;}
 
@@ -162,6 +174,7 @@ function initials(name){
 }
 
 function teamBadge(team, size){
+  if(!team) return '';
   const fallback = `<span class="team-badge-fallback" style="display:${team.logo?'none':'flex'};width:${size}px;height:${size}px;font-size:${Math.round(size*0.4)}px;">${esc(initials(team.name))}</span>`;
   const img = team.logo
     ? `<img class="team-badge-img" src="${esc(team.logo)}" alt="" style="width:${size}px;height:${size}px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">`
@@ -173,7 +186,7 @@ function b64EncodeUnicode(str){
   return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (m,p1)=>String.fromCharCode('0x'+p1)));
 }
 
-/* ---------- GitHub'dan Veri Okuma (Hızlı Yerel Yol) ---------- */
+/* ---------- GitHub'dan Veri Okuma ---------- */
 async function loadData(silent){
   if(!silent) banner = null;
   try{
@@ -187,12 +200,16 @@ async function loadData(silent){
     if(res.status === 404){
       state = null; dataMissing = true;
     }else if(res.ok){
-      state = await res.json(); dataMissing = false;
+      state = await res.json();
+      if(!state.fixtures) state.fixtures = [];
+      if(!state.matches) state.matches = [];
+      if(!state.teams) state.teams = [];
+      dataMissing = false;
     }else{
       state = null; dataMissing = true;
     }
   }catch(e){
-    console.log("Dosya bulunamadı veya henüz oluşturulmamış, kurulum ekranına geçiliyor.");
+    console.log("Dosya bulunamadı veya henüz oluşturulmamış.");
     state = null; dataMissing = true;
   }
   dataReady = true;
@@ -225,7 +242,7 @@ async function saveData(){
 
     async function attemptPut(currentSha){
       const body = {
-        message: 'Puan durumu güncellendi',
+        message: 'Turnuva verileri güncellendi',
         content: b64EncodeUnicode(JSON.stringify(state, null, 2)),
         branch: BRANCH
       };
@@ -264,21 +281,37 @@ async function saveData(){
   }
 }
 
-/* ---------- Puan Durumu Hesaplama ---------- */
+/* ---------- Puan Durumu Hesaplama (Hem Fikstür Hem Ekstra Maçlar) ---------- */
 function computeStandings(){
   const table = {};
   state.teams.forEach(t=>{ table[t.id] = {id:t.id,name:t.name,logo:t.logo||'',O:0,G:0,B:0,M:0,AG:0,YG:0,formList:[]}; });
-  const sorted = [...state.matches].sort((a,b)=>a.ts-b.ts);
-  sorted.forEach(m=>{
-    const h = table[m.homeId], a = table[m.awayId];
+
+  function processMatch(homeId, awayId, homeScore, awayScore){
+    const h = table[homeId], a = table[awayId];
     if(!h || !a) return;
     h.O++; a.O++;
-    h.AG += m.homeScore; h.YG += m.awayScore;
-    a.AG += m.awayScore; a.YG += m.homeScore;
-    if(m.homeScore > m.awayScore){ h.G++; a.M++; h.formList.push('w'); a.formList.push('l'); }
-    else if(m.homeScore < m.awayScore){ a.G++; h.M++; a.formList.push('w'); h.formList.push('l'); }
+    h.AG += homeScore; h.YG += awayScore;
+    a.AG += awayScore; a.YG += homeScore;
+    if(homeScore > awayScore){ h.G++; a.M++; h.formList.push('w'); a.formList.push('l'); }
+    else if(homeScore < awayScore){ a.G++; h.M++; a.formList.push('w'); h.formList.push('l'); }
     else { h.B++; a.B++; h.formList.push('d'); a.formList.push('d'); }
-  });
+  }
+
+  // Fikstürdeki oynanmış maçları hesapla
+  if(state.fixtures && state.fixtures.length){
+    state.fixtures.forEach(week => {
+      week.matches.forEach(m => {
+        if(m.homeScore !== null && m.homeScore !== "" && m.awayScore !== null && m.awayScore !== ""){
+          processMatch(m.homeId, m.awayId, parseInt(m.homeScore, 10), parseInt(m.awayScore, 10));
+        }
+      });
+    });
+  }
+
+  // Ekstra eklenen maçları hesapla
+  const sorted = [...state.matches].sort((a,b)=>a.ts-b.ts);
+  sorted.forEach(m => processMatch(m.homeId, m.awayId, m.homeScore, m.awayScore));
+
   const rows = Object.values(table).map(r=>({...r, AV:r.AG-r.YG, P:r.G*3+r.B, form:r.formList.slice(-5)}));
   rows.sort((a,b)=> b.P-a.P || b.AV-a.AV || b.AG-a.AG || a.name.localeCompare(b.name,'tr'));
   return rows;
@@ -298,14 +331,14 @@ function render(){
           <div class="brand-dot"></div>
           <div>
             <div class="brand-name">Turnuva</div>
-            <div class="brand-sub">eFootball Turnuvası &middot; Puan Durumu</div>
+            <div class="brand-sub">eFootball Turnuvası &middot; Puan Durumu & Fikstür</div>
           </div>
         </div>
         <div>${adminToken ? '' : `<button class="btn btn-ghost" onclick="openLogin()">Yönetici Girişi</button>`}</div>
       </div>
       ${bannerHtml}
       <div class="panel">
-        <div class="empty-note">${adminToken ? 'Turnuvayı oluşturmak için aşağıdaki formu doldur.' : 'Turnuva henüz oluşturulmadı. Yönetici kurulumu tamamladığında tablo burada görünecek.'}</div>
+        <div class="empty-note">${adminToken ? 'Turnuvayı oluşturmak için aşağıdaki formu doldur.' : 'Turnuva henüz oluşturulmadı. Yönetici kurulumu tamamladığında tablo ve fikstür burada görünecek.'}</div>
         ${adminToken ? renderInitialSetupForm() : ''}
       </div>
       <div class="footnote">Veriler GitHub üzerinde saklanıyor &middot; herkes aynı tabloyu görür</div>
@@ -315,6 +348,12 @@ function render(){
 
   const standings = computeStandings();
   const leader = standings.length ? standings[0] : null;
+  let totalPlayed = state.matches.length;
+  if(state.fixtures){
+    state.fixtures.forEach(w => w.matches.forEach(m => {
+      if(m.homeScore !== null && m.homeScore !== "" && m.awayScore !== null && m.awayScore !== "") totalPlayed++;
+    }));
+  }
 
   app.innerHTML = `
     <div class="topbar">
@@ -322,7 +361,7 @@ function render(){
         <div class="brand-dot"></div>
         <div>
           <div class="brand-name">${esc(state.name)}</div>
-          <div class="brand-sub">eFootball Turnuvası &middot; Puan Durumu</div>
+          <div class="brand-sub">eFootball Turnuvası &middot; Puan Durumu & Fikstür</div>
         </div>
       </div>
       <div>
@@ -346,8 +385,8 @@ function render(){
           <div class="sb-value">${leader ? leader.P : '—'}</div>
         </div>
         <div class="sb-item">
-          <div class="sb-label">Takım / Maç</div>
-          <div class="sb-value small">${state.teams.length} takım &middot; ${state.matches.length} maç</div>
+          <div class="sb-label">Takım / Oynanan Maç</div>
+          <div class="sb-value small">${state.teams.length} takım &middot; ${totalPlayed} maç</div>
         </div>
       </div>
     </div>
@@ -357,10 +396,12 @@ function render(){
       ${renderTable(standings)}
     </div>
 
-    ${adminToken ? renderAdminPanels() : ''}
-    ${adminToken ? renderMatchHistory() : ''}
+    ${renderFixturesPanel()}
 
-    <div class="footnote">Veriler GitHub üzerinde saklanıyor &middot; yönetici oturumu sayfa yenilendiğinde sona erer</div>
+    ${adminToken ? renderAdminPanels() : ''}
+    ${adminToken && state.matches.length > 0 ? renderMatchHistory() : ''}
+
+    <div class="footnote">Veriler GitHub üzerinde saklanıyor &middot; herkes güncel fikstür ve puan tablosunu görür</div>
   `;
 }
 
@@ -394,6 +435,62 @@ function renderTable(standings){
     </div>`;
 }
 
+/* ---------- Fikstür Paneli (Herkes Görür, Yönetici Skor Girer) ---------- */
+function renderFixturesPanel(){
+  if(!state.fixtures || state.fixtures.length === 0){
+    if(!adminToken) return '';
+    return `
+      <div class="panel">
+        <h3 class="panel-title"><span class="bar"></span>Lig Fikstürü</h3>
+        <div class="empty-note">Henüz fikstür oluşturulmadı. Takımları ekledikten sonra aşağıdaki yönetim panelinden <b>"Otomatik Fikstür Oluştur"</b> butonuna basabilirsin.</div>
+      </div>`;
+  }
+
+  const weeksHtml = state.fixtures.map((week, wIdx) => {
+    const matchesHtml = week.matches.map((m, mIdx) => {
+      const home = state.teams.find(t => t.id === m.homeId) || {name: 'Silinmiş Takım'};
+      const away = state.teams.find(t => t.id === m.awayId) || {name: 'Silinmiş Takım'};
+      const hasScore = m.homeScore !== null && m.homeScore !== "" && m.awayScore !== null && m.awayScore !== "";
+
+      let centerHtml = '';
+      if(adminToken){
+        const hVal = m.homeScore !== null && m.homeScore !== undefined ? m.homeScore : '';
+        const aVal = m.awayScore !== null && m.awayScore !== undefined ? m.awayScore : '';
+        centerHtml = `
+          <div class="f-score-box">
+            <input type="number" min="0" class="f-input" id="f_h_${wIdx}_${mIdx}" value="${hVal}" placeholder="-">
+            <span style="color:var(--text-faint);font-weight:700;">:</span>
+            <input type="number" min="0" class="f-input" id="f_a_${wIdx}_${mIdx}" value="${aVal}" placeholder="-">
+            <button class="btn btn-cyan btn-small" onclick="saveFixtureScore(${wIdx}, ${mIdx})" title="Skoru Kaydet">✓</button>
+          </div>`;
+      } else {
+        centerHtml = hasScore
+          ? `<div class="f-badge">${m.homeScore} - ${m.awayScore}</div>`
+          : `<div class="f-badge pending">VS</div>`;
+      }
+
+      return `
+        <div class="fixture-row">
+          <div class="f-team home"><span>${esc(home.name)}</span>${teamBadge(home, 22)}</div>
+          ${centerHtml}
+          <div class="f-team away">${teamBadge(away, 22)}<span>${esc(away.name)}</span></div>
+        </div>`;
+    }).join('');
+
+    return `
+      <div class="week-block">
+        <div class="week-header"><span>${week.week}. Hafta</span><span style="font-size:11px;color:var(--text-muted);">${week.week <= (state.fixtures.length / 2) ? '1. Devre' : '2. Devre (Rövanş)'}</span></div>
+        ${matchesHtml}
+      </div>`;
+  }).join('');
+
+  return `
+    <div class="panel">
+      <h3 class="panel-title"><span class="bar"></span>Lig Fikstürü</h3>
+      ${weeksHtml}
+    </div>`;
+}
+
 function renderAdminPanels(){
   const teamOptions = state.teams.map(t=>`<option value="${t.id}">${esc(t.name)}</option>`).join('');
   const teamChips = state.teams.length
@@ -406,7 +503,7 @@ function renderAdminPanels(){
       <div class="admin-grid">
         <div>
           <label>Yeni Takım Adı</label>
-          <input id="newTeamInput" type="text" placeholder="Örn. Galatasaray">
+          <input id="newTeamInput" type="text" placeholder="Örn. Beşiktaş">
           <label>Logo Dosyası Yükle (opsiyonel)</label>
           <input id="newTeamLogoFile" type="file" accept="image/*">
           <label style="margin-top:-6px;">veya Logo Linki</label>
@@ -415,7 +512,13 @@ function renderAdminPanels(){
           <div style="margin-top:12px;">${teamChips}</div>
         </div>
         <div>
-          <label>Maç Sonucu Gir</label>
+          <label>Otomatik Fikstür Sistemi</label>
+          <p style="font-size:12.5px;color:var(--text-muted);margin:0 0 12px;line-height:1.5;">
+            Tüm takımları ekledikten sonra aşağıdaki butona basarak iç ve dış saha (çift devreli) fikstürünü otomatik oluşturabilirsin.
+          </p>
+          <button class="btn btn-cyan" style="width:100%;margin-bottom:22px;" onclick="generateFixtures()">🎲 Otomatik Fikstür Oluştur (Çift Devreli)</button>
+
+          <label>Ekstra / Özel Maç Sonucu Gir (Fikstür Dışı)</label>
           <div class="score-row">
             <select id="homeTeam">${teamOptions}</select>
             <input id="homeScore" type="number" min="0" value="0">
@@ -423,7 +526,7 @@ function renderAdminPanels(){
             <input id="awayScore" type="number" min="0" value="0">
             <select id="awayTeam">${teamOptions}</select>
           </div>
-          <button class="btn btn-cyan" style="width:100%;margin-top:14px;" onclick="addMatch()">Sonucu Kaydet</button>
+          <button class="btn btn-ghost" style="width:100%;margin-top:14px;" onclick="addMatch()">Özel Maçı Kaydet</button>
         </div>
       </div>
     </div>`;
@@ -431,7 +534,7 @@ function renderAdminPanels(){
 
 function renderMatchHistory(){
   const sorted = [...state.matches].sort((a,b)=>b.ts-a.ts);
-  const items = sorted.length ? sorted.map(m=>{
+  const items = sorted.map(m=>{
     const home = state.teams.find(t=>t.id===m.homeId);
     const away = state.teams.find(t=>t.id===m.awayId);
     const d = new Date(m.ts);
@@ -445,9 +548,9 @@ function renderMatchHistory(){
           <button class="btn-icon" onclick="removeMatch('${m.id}')" title="Maçı sil">✕</button>
         </span>
       </div>`;
-  }).join('') : '<div class="empty-note">Henüz maç kaydı yok.</div>';
+  }).join('');
 
-  return `<div class="panel"><h3 class="panel-title"><span class="bar"></span>Maç Geçmişi</h3>${items}</div>`;
+  return `<div class="panel"><h3 class="panel-title"><span class="bar"></span>Özel Maç Geçmişi</h3>${items}</div>`;
 }
 
 function renderInitialSetupForm(){
@@ -464,7 +567,7 @@ async function submitInitialSetup(){
   const name = document.getElementById('setupName').value.trim();
   const err = document.getElementById('setupError');
   if(!name){ err.textContent = 'Lütfen bir turnuva adı girin.'; return; }
-  state = { name, teams:[], matches:[] };
+  state = { name, teams:[], matches:[], fixtures:[] };
   const ok = await saveData();
   if(ok) render();
 }
@@ -477,7 +580,7 @@ function openLogin(){
   overlay.innerHTML = `
     <div class="modal">
       <h2>Yönetici Girişi</h2>
-      <p>Puan tablosunu düzenlemek için GitHub token'ını yapıştır.</p>
+      <p>Puan tablosunu ve fikstürü düzenlemek için GitHub token'ını yapıştır.</p>
       <label>GitHub Token</label>
       <input id="loginToken" type="password" placeholder="github_pat_..." onkeydown="if(event.key==='Enter')submitLogin()">
       <div class="modal-error" id="loginError"></div>
@@ -558,6 +661,81 @@ async function uploadTeamLogo(file, teamId){
   return `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/${path}?v=${Date.now()}`;
 }
 
+/* ---------- Fikstür Üretici & Skor Kaydedici ---------- */
+async function generateFixtures(){
+  if(state.teams.length < 2){ alert('Fikstür oluşturmak için en az 2 takım eklemelisin.'); return; }
+  if(state.fixtures && state.fixtures.length > 0){
+    if(!confirm('Mevcut fikstür silinip baştan oluşturulacak. Onaylıyor musun?')) return;
+  }
+
+  // Takımları karıştırarak adil kura çek
+  let teamIds = state.teams.map(t => t.id).sort(() => Math.random() - 0.5);
+  if(teamIds.length % 2 !== 0) teamIds.push('BYE');
+
+  const n = teamIds.length;
+  const firstHalf = [];
+
+  for(let r = 0; r < n - 1; r++){
+    const weekMatches = [];
+    for(let i = 0; i < n / 2; i++){
+      const homeId = teamIds[i];
+      const awayId = teamIds[n - 1 - i];
+      if(homeId !== 'BYE' && awayId !== 'BYE'){
+        // İç/dış saha dengesi için bazı turlarda yer değiştir
+        if(r % 2 === 1 && i === 0){
+          weekMatches.push({ id: uid(), homeId: awayId, awayId: homeId, homeScore: null, awayScore: null });
+        } else {
+          weekMatches.push({ id: uid(), homeId, awayId, homeScore: null, awayScore: null });
+        }
+      }
+    }
+    firstHalf.push({ week: r + 1, matches: weekMatches });
+    teamIds.splice(1, 0, teamIds.pop());
+  }
+
+  // 2. Devre (Rövanş maçları)
+  const secondHalf = firstHalf.map((w, idx) => ({
+    week: firstHalf.length + idx + 1,
+    matches: w.matches.map(m => ({
+      id: uid(),
+      homeId: m.awayId,
+      awayId: m.homeId,
+      homeScore: null,
+      awayScore: null
+    }))
+  }));
+
+  const prev = JSON.parse(JSON.stringify(state));
+  state.fixtures = [...firstHalf, ...secondHalf];
+  const ok = await saveData();
+  if(!ok) state = prev;
+  render();
+}
+
+async function saveFixtureScore(wIdx, mIdx){
+  const hVal = document.getElementById(`f_h_${wIdx}_${mIdx}`).value;
+  const aVal = document.getElementById(`f_a_${wIdx}_${mIdx}`).value;
+
+  const prev = JSON.parse(JSON.stringify(state));
+  if(hVal === '' && aVal === ''){
+    state.fixtures[wIdx].matches[mIdx].homeScore = null;
+    state.fixtures[wIdx].matches[mIdx].awayScore = null;
+  } else {
+    const hs = parseInt(hVal, 10);
+    const as = parseInt(aVal, 10);
+    if(isNaN(hs) || isNaN(as) || hs < 0 || as < 0){
+      alert('Lütfen her iki takım için de geçerli bir skor girin (veya maçı sıfırlamak için ikisini de boş bırakın).');
+      return;
+    }
+    state.fixtures[wIdx].matches[mIdx].homeScore = hs;
+    state.fixtures[wIdx].matches[mIdx].awayScore = as;
+  }
+
+  const ok = await saveData();
+  if(!ok) state = prev;
+  render();
+}
+
 async function addTeam(){
   const input = document.getElementById('newTeamInput');
   const logoInput = document.getElementById('newTeamLogo');
@@ -592,7 +770,7 @@ async function addTeam(){
 
 async function removeTeam(id){
   const hasMatches = state.matches.some(m=>m.homeId===id || m.awayId===id);
-  if(hasMatches){ alert('Bu takımın maçları var. Önce maç geçmişinden ilgili maçları sil.'); return; }
+  if(hasMatches){ alert('Bu takımın özel maç geçmişi var. Önce o maçları sil.'); return; }
   const prev = JSON.parse(JSON.stringify(state));
   state.teams = state.teams.filter(t=>t.id!==id);
   const ok = await saveData();
@@ -619,7 +797,7 @@ async function removeMatch(id){
   const prev = JSON.parse(JSON.stringify(state));
   state.matches = state.matches.filter(m=>m.id!==id);
   const ok = await saveData();
-  if(-ok) state = prev;
+  if(!ok) state = prev;
   render();
 }
 
