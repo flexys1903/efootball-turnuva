@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PES Mobil Süper Lig</title>
+    <style>
+        :root { --ana-renk: #000; --ikincil: #fff; --gri: #1a1a1a; }
+        body { font-family: 'Arial', sans-serif; background-color: var(--ana-renk); color: var(--ikincil); margin: 0; padding: 10px; }
+        .container { max-width: 650px; margin: auto; background: var(--gri); padding: 15px; border-radius: 10px; border: 1px solid #333; }
+        h2, h3 { text-align: center; border-bottom: 2px solid #fff; padding-bottom: 8px; text-transform: uppercase; }
+        
+        /* Tablo Stili */
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px; }
+        th { background: #333; padding: 10px; border: 1px solid #444; }
+        td { padding: 10px; text-align: center; border: 1px solid #444; }
+        tr:nth-child(1) { background: #222; font-weight: bold; color: #f1c40f; }
+
+        /* Yönetim Paneli */
+        .admin-panel { background: #fff; color: #000; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+        .admin-panel input { width: 80px; padding: 6px; margin: 5px; }
+        button { background: #000; color: #fff; padding: 8px 15px; border: none; cursor: pointer; border-radius: 4px; font-weight: bold; }
+        
+        .mac-listesi { font-size: 14px; text-align: left; background: #222; padding: 10px; border-radius: 5px; max-height: 150px; overflow-y: auto; }
+        .mac-item { padding: 5px 0; border-bottom: 1px dashed #444; }
+        .footer { text-align: center; font-size: 12px; margin-top: 20px; color: #666; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>🦅 PES Süper Lig</h2>
+
+    <!-- Skor ve Maç Giriş Alanı -->
+    <div class="admin-panel" id="admin">
+        <h4 style="margin:0 0 10px 0">Maç Sonucu Gir</h4>
+        <input type="text" id="ev" placeholder="Ev Sahibi">
+        <input type="number" id="s1" placeholder="0">
+        -
+        <input type="number" id="s2" placeholder="0">
+        <input type="text" id="dep" placeholder="Deplasman">
+        <br>
+        <button onclick="macEkle()">Maçı Kaydet & Puanı Güncelle</button>
+    </div>
+
+    <!-- Puan Durumu -->
+    <h3>Puan Durumu</h3>
+    <table id="puanTablosu">
+        <thead>
+            <tr>
+                <th>Sıra</th>
+                <th>Takım</th>
+                <th>O</th>
+                <th>G</th>
+                <th>B</th>
+                <th>M</th>
+                <th>AV</th>
+                <th>P</th>
+            </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+    </table>
+
+    <!-- Oynanan Maçlar / Fikstür Geçmişi -->
+    <h3>Oynanan Maçlar</h3>
+    <div class="mac-listesi" id="macListesi">
+        <div style="color: #888; text-align: center;">Henüz maç oynanmadı.</div>
+    </div>
+
+    <div class="footer">Süper Lig Yönetim Paneli</div>
+</div>
+
+<script>
+    let veriler = {};
+    let maclar = [];
+
+    function macEkle() {
+        const ev = document.getElementById('ev').value.trim();
+        const dep = document.getElementById('dep').value.trim();
+        const s1 = parseInt(document.getElementById('s1').value);
+        const s2 = parseInt(document.getElementById('s2').value);
+
+        if(!ev || !dep || isNaN(s1) || isNaN(s2)) return alert("Lütfen takımları ve skorları eksiksiz gir!");
+
+        [ev, dep].forEach(t => {
+            if(!veriler[t]) veriler[t] = {o:0, g:0, b:0, m:0, ag:0, yg:0, p:0};
+        });
+
+        const t1 = veriler[ev], t2 = veriler[dep];
+        t1.o++; t2.o++;
+        t1.ag += s1; t1.yg += s2;
+        t2.ag += s2; t2.yg += s1;
+
+        if(s1 > s2) { t1.g++; t1.p += 3; t2.m++; }
+        else if(s2 > s1) { t2.g++; t2.p += 3; t1.m++; }
+        else { t1.b++; t2.b++; t1.p += 1; t2.p += 1; }
+
+        maclar.unshift(`${ev} <b>${s1} - ${s2}</b> ${dep}`);
+
+        guncelle();
+        
+        // Verileri hafızaya kaydet
+        localStorage.setItem('pesVeri', JSON.stringify(veriler));
+        localStorage.setItem('pesMaclar', JSON.stringify(maclar));
+
+        // Kutuları temizle
+        document.getElementById('ev').value = '';
+        document.getElementById('dep').value = '';
+        document.getElementById('s1').value = '';
+        document.getElementById('s2').value = '';
+    }
+
+    function guncelle() {
+        // Puan Tablosu Sıralama (Puan -> Averaj)
+        const tbody = document.getElementById('tbody');
+        tbody.innerHTML = "";
+        
+        let sirali = Object.keys(veriler).sort((a,b) => {
+            if(veriler[b].p !== veriler[a].p) return veriler[b].p - veriler[a].p;
+            return (veriler[b].ag - veriler[b].yg) - (veriler[a].ag - veriler[a].yg);
+        });
+
+        sirali.forEach((isim, i) => {
+            const t = veriler[isim];
+            tbody.innerHTML += `<tr>
+                <td>${i+1}</td>
+                <td style="text-align:left">${isim}</td>
+                <td>${t.o}</td>
+                <td>${t.g}</td>
+                <td>${t.b}</td>
+                <td>${t.m}</td>
+                <td>${t.ag - t.yg}</td>
+                <td><b>${t.p}</b></td>
+            </tr>`;
+        });
+
+        // Maç Listesi
+        const listeDiv = document.getElementById('macListesi');
+        if(maclar.length > 0) {
+            listeDiv.innerHTML = maclar.map(m => `<div class="mac-item">⚽ ${m}</div>`).join('');
+        }
+    }
+
+    // Sayfa açıldığında verileri yükle
+    window.onload = () => {
+        const kVeri = localStorage.getItem('pesVeri');
+        const kMac = localStorage.getItem('pesMaclar');
+        if(kVeri) { veriler = JSON.parse(kVeri); }
+        if(kMac) { maclar = JSON.parse(kMac); }
+        guncelle();
+    };
+</script>
+
+</body>
+</html>
