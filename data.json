@@ -272,8 +272,8 @@
           "id": "vqblcs50",
           "homeId": "pvzq3vjr",
           "awayId": "2kijuccs",
-          "homeScore": null,
-          "awayScore": null
+          "homeScore": 0,
+          "awayScore": 5
         },
         {
           "id": "qta7ck05",
